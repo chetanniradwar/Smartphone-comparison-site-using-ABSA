@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" , initail-scale="1.0">
+  <!--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">-->
+  {%load static%} 
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<style>
+      body {
+          margin: 0px;
+          font-family: Arial, Helvetica, sans-serif;
+          
+      }
+      .container {
+         overflow: hidden;
+         background-color: black;
+         padding:15px;
+      }
+      /* Style the topnav links */
+      .container a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      /* Change color on hover */
+      .link a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      .ml-3{
+        padding-right:300px;
+        padding-left:50px;
+      }
+</style>
+
+<body>
+  <header class="Header">
+    <div class="container">
+      <a class="flex">
+        <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>-->
+        <span class="ml-3 text-xl">Aspect Based Sentiment Analysis</span>
+      </a>
+              <nav class="link">
+                <a href="http://127.0.0.1:8000/home.html" class="Button">HOME</a>
+                <a href="http://127.0.0.1:8000/compare.html" class="Button">COMPARE</a>
+                <a class="Button">SMARTPHONE DETAILS</a>
+                <a href="http://127.0.0.1:8000/about.html" class="Button">ABOUT</a>
+                
+              </nav>
+    </div>
+  </header>
+
+  <div class="article-module--container--BVGog base-module--container--3oWdy">
+    <div class="article-module--content--2QXHq">
+      <h1>Aspect Based Sentiment Analysis</h1>
+      <p>Aspect-based sentiment analysis is a <a href="https://monkeylearn.com/text-analysis/" target="_blank"
+          rel="noopener noreferrer">text analysis</a> technique that breaks down text into aspects (attributes or
+        components of a product or service), and then allocates each one a sentiment level (positive, negative or
+        neutral).</p>
+      <p>If you thought <a href="https://monkeylearn.com/sentiment-analysis/" target="_blank"
+          rel="noopener noreferrer">sentiment analysis</a> was pretty neat, then prepare to be blown away by this
+        advanced text analysis technique, aspect-based sentiment analysis helps you get the most out of your data. </p>
+      <p>Imagine you have a large dataset of customer feedback from different sources such as NPS, customer satisfaction
+        surveys, social media, and online reviews. Some positive, some negative and others that contain mixed feelings.
+        You’d use sentiment analysis to automatically classify the polarity of each text, right? After all, it’s already
+        proven to be a highly efficient tool.</p>
+      <p>But, what if you wanted to pick customer feedback apart, hone in on the details, get down to the nitty-gritty
+        of each feedback for a more complete picture of your customers’ opinions?</p>
+      <p>Cue aspect-based sentiment analysis (ABSA). This technique can help businesses become <a
+          href="https://www.salesforce.com/blog/2019/01/how-to-create-a-customer-centric-experience.html"
+          target="_blank" rel="noopener noreferrer">customer-centric</a> and place their customers at the heart of
+        everything they do. It’s about listening to their customers, understanding their voice, analyzing their feedback
+        and learning more about customer experiences, as well as their expectations for products or services. </p>
+      <p>But how can you get started with aspect-based sentiment analysis?</p>
+      <p>First, you’ll need to gather data, such as customer feedback, reviews, survey responses, social media and more.
+        Next, you’ll need to analyze the information using aspect-based sentiment analysis. There are often hundreds or
+        thousands of text entries from each source, so it would be far too time-consuming and repetitive to analyze them
+        manually. And if you want to analyze information on a granular level, in the same way an aspect-based sentiment
+        analysis does, it would be near impossible without machine learning.</p>
+      <p>Below, we’ll go into more detail about what aspect-based sentiment analysis is, how it works, and how you can
+        use it within your business. Then you’ll be able to create your own aspect-based sentiment analysis model – yes,
+        even if you’ve never written a line of code!</p>
+      <p>If there’s something in particular you want to know about aspect-based sentiment analysis, click on the content
+        links below and we’ll take you straight there:</p>
+      <ol>
+        <li><a href="/#what-is">What is Aspect-Based Sentiment Analysis?</a> </li>
+        <li><a href="/#importance">Why is it Important?</a></li>
+        
+        <li><a href="/#use-cases">Use Cases &amp; Applications</a></li>
+      </ol>
+      <p>It’s time to learn more about aspect-based sentiment analysis. Let's get started!</p>
+      <h2 class="section" id="what-is">1. What is Aspect-Based Sentiment Analysis?</h2>
+      <p>The big difference between sentiment analysis and aspect-based sentiment analysis is that the former only
+        detects the sentiment of an overall text, while the latter analyzes each text to identify various aspects and
+        determine the corresponding sentiment for each one. </p>
+      <p>In other words, instead of classifying the overall sentiment of a text into positive or negative, aspect-based
+        analysis allows us to associate specific sentiments with different aspects of a product or service. The results
+        are more detailed, interesting and accurate because aspect-based analysis looks more closely at the information
+        behind a text. Scientists, for example, analyze cells under a microscope so that they can better visualize their
+        components, and aspect-based sentiment analysis follows this principle. </p>
+      <p>When we talk about aspects, we mean the attributes or components of a product or service e.g. 'the user
+        experience of a new product', 'the response time for a query or complaint' or 'the ease of integration of new
+        software'. </p>
+      <p>Here’s a breakdown of what aspect-based sentiment analysis can extract:</p>
+      <ul>
+        <li><strong>Sentiments:</strong> positive or negative opinions about a particular aspect.</li>
+        <li><strong>Aspects:</strong> the thing or topic that is being talked about. </li>
+      </ul>
+      
+      <h2 class="section" id="importance">2. Why is Aspect-Based Sentiment Analysis Important?</h2>
+      <p>Customers are more vocal than ever. They love leaving feedback – good and bad – making them a valuable resource
+        for businesses. <a href="https://www.lyfemarketing.com/blog/social-media-marketing-statistics/" target="_blank"
+          rel="noopener noreferrer">A huge 95% of adults between the ages of 18 and 34 are likely to follow a brand on
+          social media</a>, and each time they interact with the brand, whether it’s a mention or comment, brands are
+        receiving valuable insights. </p>
+      <p>Now, imagine all that data customer support, product and analytics teams have to deal with, and we’ve only
+        touched upon the one data source (social media)! We’ll go into more detail about the different data sources that
+        exist later on. There’s also the added pressure of dealing with customer demands as quickly as possible. Did you
+        know that <a
+          href="https://www.lithium.com/company/news-room/press-releases/2013/consumers-will-punish-brands-that-fail-to-respond-on-twitter-quickly"
+          target="_blank" rel="noopener noreferrer">72% of customers who complain to a brand on Twitter expect a
+          response within an hour</a>?</p>
+      <p>It all boils down to customer experience. If customers are unhappy with the way you handle queries and
+        complaints, or finds the user experience of your software clunky and inefficient, they’ll simply look elsewhere
+        for an alternative. American Express found that <a
+          href="https://www.superoffice.com/blog/what-customers-want-you-to-know-about-them/" target="_blank"
+          rel="noopener noreferrer">customers are willing to spend more money with a company that delivers an excellent
+          service</a>, which goes to show that people are less price conscious these days, and more focused on a premium
+        customer experience.</p>
+      <p>Aspect-based sentiment analysis works in the same way as sentiment analysis. It takes all that data – emails,
+        chats, customer surveys, social media posts, customer support tickets etc – and automatically structures it so
+        that companies are able to interpret text entries from customers and gain meaningful insights. Not only does
+        this help managers make key decisions based on insights from their customers, it also helps employees become
+        more efficient and less frustrated with time-consuming, monotonous tasks.</p>
+      <p>Aspect-based sentiment analysis is particularly relevant at the moment because companies need to be more
+        customer-centric than ever. This text analysis model lets businesses read between the lines, and hone in on the
+        specific aspects that make their customers happy or unhappy. By gaining a deeper understanding, businesses are
+        then able to <a href="https://hbr.org/2014/10/the-value-of-keeping-the-right-customers" target="_blank"
+          rel="noopener noreferrer">create a seamless customer experience and increase customer retention</a>. </p>
+      <p>Let’s take a look at some of the advantages in more detail: </p>
+      <h3>Scalability</h3>
+      <p>It’s impossible for teams to manually sift through thousands of tweets, customer support conversations, or
+        customer reviews, especially if you want to analyze information on a granular level. Aspect-based sentiment
+        analysis allows businesses to automatically analyze large amounts of data in detail, which saves money, time and
+        means teams can focus on more important tasks.</p>
+      <h3>Real-Time Analysis</h3>
+      <p>Aspect-based sentiment analysis allows businesses to hone in on aspects of a product or service that customers
+        are complaining about, and make amends in real-time. Is there a glitch in an app? Is there a major bug in some
+        new software? Are customers getting angry about one particular service or product feature? Aspect-based
+        sentiment analysis can help you immediately identify these kinds of situations and take action. </p>
+      <h3>Consistent Criteria</h3>
+      <p>While we’re able to differentiate between different aspects and sentiments within a text, we’re not always
+        objective. We’re influenced by our personal experiences, thoughts, and beliefs and only <a
+          href="http://ceur-ws.org/Vol-1096/paper1.pdf" target="_blank" rel="noopener noreferrer">agree around 60-65% of
+          the times</a> when determining sentiments for pieces of text. By using a centralized aspect-based sentiment
+        analysis model, businesses can apply the same criteria to all texts meaning results will be more consistent and
+        accurate.</p>
+      <h3>Deeper customer understanding</h3>
+      <p>It’s easier to scan and categorize text as positive or negative than it is to spend time analyzing each
+        sentence of a text. But by using an automated aspect-based sentiment analysis system, companies can gain a
+        deeper understanding about specific products and services quickly and easily, and really focus on their
+        customers’ needs and expectations. It means businesses take into account everything a customer says and can
+        create a customer-centric experience. </p>
+      
+      <h2 class="section" id="use-cases">3. Use Cases and Applications</h2>
+      <p>Aspect-based sentiment analysis is a very versatile text analysis model that can be used across all industries
+        and departments, to automate business processes and gain more accurate insights to make better decisions. </p>
+      <p>In this section, we’re going to focus on how aspect-based sentiment analysis is being used to analyze customer
+        feedback (VoC) and improve customer service. </p>
+      <h3>Product Feedback</h3>
+      <p>Today, there’s an abundance of feedback on social media, your Net Promoter Score (NPS), websites and much more,
+        and all this textual customer feedback is <a
+          href="https://community.uservoice.com/blog/5-overlooked-customer-feedback-opportunities-that-are-product-insight-goldmines/"
+          target="_blank" rel="noopener noreferrer">key to discovering and solving customer problems</a>. </p>
+      <p>Here’s how aspect-based sentiment analysis can be used to make sense of all this customer feedback:</p>
+      <ul>
+        <li>Understand specific aspects that customers like and dislike about your brand.</li>
+        <li>Get valuable, granular-level insights from customer feedback.</li>
+        <li>Analyze service and product reviews to discover the successes and failures of your brand, and compare them
+          to your competitor’s.</li>
+        <li>Track how customer sentiment changes toward specific features and attributes of a service or product.</li>
+        <li>Determine if customer segments feel more strongly about a specific feature, for example an older demographic
+          might find a travel website harder to navigate than a younger demographic.</li>
+      </ul>
+      <h3>Customer Support</h3>
+      <p><a href="https://www.teamsupport.com/blog/customer-support-metrics-to-track" target="_blank"
+          rel="noopener noreferrer">Customers don’t like waiting for a solution to their problems</a>, which means
+        customer support teams need to respond quickly and effectively. If not, chances are customers will look
+        elsewhere. That’s why businesses need high-quality machine learning software like aspect-based sentiment
+        analysis to: </p>
+      <ul>
+        <li>Automate tagging of all incoming customer support queries.</li>
+        <li>Quickly find out why customers are unhappy.</li>
+        <li>Send queries and complaints to team members that are best equipped to respond.</li>
+        <li>Gain insights into how your customer support team handles customers.</li>
+      </ul>
+      <h2>Final Words</h2>
+      <p>The customer experience is top priority among businesses. It will rise to the <a
+          href="https://www.forbes.com/sites/shephyken/2018/12/16/ten-customer-servicecustomer-experience-predictions-for-2019/#42a1eaef6178"
+          target="_blank" rel="noopener noreferrer">top of the marketing agenda</a> and continue to be one of the best
+        investments a company can make. For consumers, the <a
+          href="https://www.qminder.com/customer-service-statistics/" target="_blank" rel="noopener noreferrer">customer
+          experience will become more important than price and product</a> by 2020. </p>
+      <p>Machine learning is at the forefront of this movement. It can help businesses become customer-centric by
+        listening to them, understanding their voice and analyzing their feedback. Sentiment analysis is already being
+        used to automate processes, but it only determines polarities of a text – negative/positive, good/bad,
+        beautiful/ugly. Aspect-based sentiment analysis, on the other hand, is able to gain a much deeper understanding
+        of textual data. </p>
+      <p>For example, a software company might want to understand the specific sentiments towards different aspects of
+        its product. A review might say: <em>"support were great but UI is confusing”</em>, which contains a positive
+        sentiment towards 'aspect customer support' but a negative sentiment towards 'aspect user experience'. A
+        sentiment analysis model might classify the overall sentiment as negative, and ignore the fact that the staff
+        did a good job, or vice versa. Whereas an aspect-based analysis model would differentiate between aspects and
+        allocate a sentiment to each one.</p>
+      <p>Once data has been imported, either from internal or external sources, aspect-based analysis tools are able to
+        classify sentiments towards specific product features or services. And this is where it gets interesting for
+        organizations. Customers want to feel like they’re being listened to, and by using deeper machine learning
+        models like aspect-based sentiment analysis, businesses can send quick, efficient and personalized responses.
+        And for customer support teams it means streamlining processes and gaining more valuable insights. </p>
+     
+    </div>
+  </div>
+</body>
+
+</html>

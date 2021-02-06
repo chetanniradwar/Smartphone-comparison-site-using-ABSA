@@ -1,0 +1,54 @@
+.article-module--container--BVGog.base-module--container--3oWdy
+{font-size: 16px;
+font-family: Rubik,sans-serif;
+box-sizing: inherit;
+max-width: 73em;
+margin: auto;
+text-align: center;
+padding: 3.125rem 1.56rem;
+}
+
+.article-module--content--2QXHq
+{
+
+    font-size: 16px;
+    font-family: Rubik,sans-serif;
+    box-sizing: inherit;
+    padding: 0;
+    max-width: 62rem;
+    margin: auto;
+    text-align: left;
+}
+.article-module--content--2QXHq h1 
+{
+font-family: Rubik,sans-serif;
+box-sizing: inherit;
+color: #2b3e51;
+font-weight: 400;
+padding: 0;
+font-size: 1.25rem;
+margin: 1em 0;
+text-align: center;
+}
+.article-module--content--2QXHq h1, .article-module--content--2QXHq h2 {
+    font-size: 2.25rem;
+    margin: 1em 0;
+}
+.article-module--content--2QXHq h3 {
+    font-size: 1.75rem;
+}
+
+.article-module--content--2QXHq h4 {
+    font-size: 1.375rem;
+}
+.article-module--content--2QXHq a {
+    color: #008bff;
+}
+
+.article-module--content--2QXHq ol, .article-module--content--2QXHq p, .article-module--content--2QXHq table, .article-module--content--2QXHq ul {
+    font-family: Open Sans,sans-serif;
+    color: #2b3e51;
+    font-size: 1.125rem;
+    line-height: 1.89;
+    margin-bottom: 1.35rem;
+}

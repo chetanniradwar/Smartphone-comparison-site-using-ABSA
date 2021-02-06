@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <!--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">-->
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'css/bar.css' %}">
+  <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+  <script src="{% static 'js/modernizr.js'%}"></script> <!-- Modernizr -->
+</head>
+<style>
+  body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+
+  .container {
+    overflow: hidden;
+    background-color: black;
+    padding: 15px;
+  }
+
+  /* Style the container links */
+  .container a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  /* Change color on hover */
+  .link a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .ml-3 {
+    padding-right: 300px;
+    padding-left: 50px;
+  }
+</style>
+
+<body>
+  <header class="Header">
+    <div class="container">
+      <a class="flex">
+        <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>-->
+        <span class="ml-3">Aspect Based Sentiment Analysis</span>
+      </a>
+      <nav class="link">
+        <a href="http://127.0.0.1:8000/home.html" class="Button">HOME</a>
+        <a href="http://127.0.0.1:8000/compare.html" class="Button">COMPARE</a>
+        <a class="Button">SMARTPHONE DETAILS</a>
+        <a href="http://127.0.0.1:8000/about.html" class="Button">ABOUT</a>
+
+      </nav>
+
+
+    </div>
+  </header>
+  <form action="geturls" method="POST">
+    {% csrf_token %}
+    <div>
+      <style>
+        input[type=text] {
+          width: 25%;
+          border: 2px solid #aaa;
+          border-radius: 4px;
+          margin: 2px 0;
+          margin-left: 27%;
+          margin-top: 10px;
+          outline: none;
+          padding: 8px;
+          box-sizing: border-box;
+          transition: .3s;
+
+        }
+
+        input[type="text"] focus {
+          border-color: dodgerBlue;
+          box-shadow: 0 0 8px 0 dodgerBlue;
+        }
+      </style>
+      <input id='url1' type="text" name="url1" placeholder="Enter URL of 1st Smartphone">
+    </div>
+    <div>
+      <style>
+        input[type="text"] {
+          width: 25%;
+          border: 2px solid black;
+          border-radius: 4px;
+          margin: 2px 0;
+          margin-left: 50%;
+          margin-top: 10px;
+          outline: none;
+          padding: 8px;
+          box-sizing: border-box;
+          transition: .3s;
+
+        }
+
+        #url1 {
+          position: absolute;
+          margin-top: 60px;
+          margin-left: 10%;
+        }
+
+
+        #url2 {
+          position: absolute;
+          margin-top: 60px;
+          margin-left: 50%;
+        }
+
+        #ok {
+          position: relative;
+          top: 4px;
+          background-color: white;
+          border: 2px solid #4CAF50;
+          border-radius: 5px;
+          margin-top: 4%;
+          margin-left: 84%;
+          padding-left: 2.2rem;
+          padding-right: 2.2rem;
+          padding-top: 1.002rem;
+          padding-bottom: 1.002rem;
+        }
+
+        #ok:hover {
+          background-color: #4CAF50;
+          color: white;
+        }
+
+        input[type="text"] focus {
+          border-color: dodgerBlue;
+          box-shadow: 0 0 8px 0 dodgerBlue;
+        }
+      </style>
+      <input id='url2' type="text" name="url2" placeholder="Enter URL of 2nd Smartphone">
+    </div>
+    <input id='ok' type="submit">
+  </form>
+  <section class="cd-intro">
+    <h1>Products Comparison Table</h1>
+  </section> <!-- .cd-intro -->
+
+  <section class="cd-products-comparison-table">
+    <header>
+      <h2>Compare Models</h2>
+
+      <div class="actions">
+        <a href="#0" class="reset">Reset</a>
+      </div>
+    </header>
+
+    <div class="cd-products-table">
+      <div class="features">
+        <div class="top-info">Models</div>
+        <ul class="cd-features-list">
+          <li>Display</li>
+          <li>Front Camera</li>
+          <li>Processor</li>
+          <li>Rear Camera</li>
+          <li>Battery Capacity</li>
+          <li>ROM</li>
+          <li>RAM</li>
+          <li>Other Features</li>
+          <li>Warranty</li>
+
+        </ul>
+      </div> <!-- .features -->
+      {%block content%}
+      <div class="cd-products-wrapper">
+        <ul class="cd-products-columns">
+          <li class="product">
+            <div class="top-info">
+              <div class="check"></div>
+              <img src="{{url1_image}}" alt="product image">
+              <h3>{{ModelName}}</h3>
+            </div> <!-- .top-info -->
+
+            <ul class="cd-features-list">
+              <li>{{ResolutionType}}</li>
+              <li>{{SecondaryCamera}}</li>
+              <li>{{ProcessorType}}</li>
+              <li>{{PrimaryCamera}}</li>
+              <li>{{BatteryCapacity}}</li>
+
+              <li>{{RAM}}</li>
+              <li>{{InternalStorage}}</li>
+              <li>{{OtherFeatures}}</li>
+              <li>
+                {{WarrantySummary}}
+              </li>
+            </ul>
+          </li> <!-- .product -->
+
+          <li class="product">
+            <div class="top-info">
+              <div class="check"></div>
+              <img src="{{url2_image1}}" alt="product image">
+              <h3>{{ModelName1}}</h3>
+            </div> <!-- .top-info -->
+
+            <ul class="cd-features-list">
+              <li>{{ResolutionType1}}</li>
+              <li>{{SecondaryCamera1}}</li>
+              <li>{{ProcessorType1}}</li>
+              <li>{{PrimaryCamera1}}</li>
+              <li>{{BatteryCapacity1}}</li>
+
+              <li>{{RAM1}}</li>
+              <li>{{InternalStorage1}}</li>
+              <li>{{OtherFeatures1}}</li>
+              <li>
+                {{WarrantySummary1}}
+              </li>
+            </ul>
+          </li> <!-- .product -->
+        </ul> <!-- .cd-products-columns -->
+      </div> <!-- .cd-products-wrapper -->
+
+      <ul class="cd-table-navigation">
+        <li><a href="#0" class="prev inactive">Prev</a></li>
+        <li><a href="#0" class="next">Next</a></li>
+      </ul>
+    </div> <!-- .cd-products-table -->
+  </section> <!-- .cd-products-comparison-table -->
+  
+    {% autoescape off %}
+    <h1 class="aspect">ASPECT1</h1>
+    <div id="all">
+      <div id="bar">
+        <div id="likes" {{url1_aspect1_percentageLikes}}></div>
+        <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
+      </div>
+      <input type="button" value="Like" id="likeButton" onclick="like();" />
+      <input type="button" value="Dislike" id="dislikeButton" onclick="dislike();" />
+    </div>
+    <div id="all1">
+      <div id="bar1">
+        <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
+        <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="positive" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="negative" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+
+    <h1 class="aspect">ASPECT2</h1>
+
+    <div id="all">
+      <div id="bar">
+        <div id="likes" {{url1_aspect1_percentageLikes}}></div>
+        <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="verify_btn"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle" />(50)</p>
+          
+      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+    <div id="all1">
+      <div id="bar1">
+        <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
+        <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+
+
+    <h1 class="aspect">ASPECT3</h1>
+    <div id="all">
+      <div id="bar">
+        <div id="likes" {{url1_aspect1_percentageLikes}}></div>
+        <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+    <div id="all1">
+      <div id="bar1">
+        <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
+        <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+    <h1 class="aspect">ASPECT4</h1>
+    <div id="all">
+      <div id="bar">
+        <div id="likes" {{url1_aspect1_percentageLikes}}></div>
+        <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+    <div id="all1">
+      <div id="bar1">
+        <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
+        <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+    <h1 class="aspect">ASPECT5</h1>
+    <div id="all">
+      <div id="bar">
+        <div id="likes" {{url1_aspect1_percentageLikes}}></div>
+        <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+    <div id="all1">
+      <div id="bar1">
+        <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
+        <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
+      </div>
+      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+
+      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle">(50)</p>
+    </div>
+  
+  {%endautoescape%}
+
+  {%endblock%}
+  <script src="{% static 'js/compare_bar.js' %}"></script>
+  <script src="{% static 'js/ajax.js' %}"></script>
+  <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
+</body>
+
+</html>

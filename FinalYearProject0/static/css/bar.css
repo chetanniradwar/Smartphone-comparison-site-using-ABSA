@@ -1,0 +1,107 @@
+#all{
+	
+	width: 50%;
+    /* margin-bottom: 5px; */
+    /* text-align: left; */
+    padding: 0px;
+    position: relative; 
+	top: 55px; 
+	left:50px;
+	display: inline-block;
+}
+#likes{
+	height:5px;
+	width:50%;
+	background:#0000ee;
+	float:left;
+}
+#dislikes{
+	height:5px;
+	width:50%;
+	background:rgb(230, 11, 11);
+	float:right;
+}
+#all #likeButton{
+	margin-left: 8%;
+    padding:3%;
+    margin-right: 8%;
+    
+    display: inline-block;
+}
+#all #dislikeButton
+{
+
+	display:inline-block;
+	margin-left: 8%;
+    padding:3%;
+    margin-right: 8%;
+	
+}
+
+#bar{
+	position: relative;
+	margin-left: 2px;
+	left: 0px;
+	width:60%;
+	
+	
+}
+#all1{
+	
+    width: 50%;
+    /* margin-bottom: 5px; */
+    /* text-align: left; */
+    padding: 11px;
+	position: relative;
+	/*top:-58px;*/
+    bottom: 32px;
+    left: 63%;
+    display: inline-block;
+	
+	
+}
+#likes1{
+	height:5px;
+	width:50%;
+	background:#0000ee;
+	float:left;
+}
+#dislikes1{
+	height:5px;
+	width:50%;
+	background:rgb(230, 11, 11);
+	float:right;
+}
+#all1 #likeButton1{
+	margin-left: 8%;
+  
+    margin-right: 8%;
+    padding:3%;
+    display: inline-block;
+}
+#all1 #dislikeButton1
+{
+	display:inline-block;
+	margin-left: 8%;
+  
+    margin-right:8%;
+    padding: 3%;
+}
+
+#bar1{
+	position: relative;
+	margin-left: 2px;
+	left: 0px;
+	width:60%;
+	
+	
+
+}
+.aspect{
+	padding: 37px;
+	width: 100%;
+
+	text-align: center;
+	color: cornflowerblue;
+	
+}
