@@ -20,3 +20,13 @@ $(".emoji").click(function () {
   });
 
 });
+$(window).load(function() {
+  // Animate loader off screen
+  $(".se-pre-con").fadeOut("slow");;
+});
+
+$("#ok").click(function(){
+  $("#hidder").hide();
+  $(".se-pre-con").show();
+
+});
