@@ -7,12 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
   <!--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   {%load static%}
   <link rel="stylesheet" href="{% static 'css/bar.css' %}">
   <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+  <link rel="stylesheet" href="{% static 'css/sidebar.css' %}"><!-- Resource style -->
   <script src="{% static 'js/modernizr.js'%}"></script> <!-- Modernizr -->
 </head>
 <style>
@@ -254,11 +258,11 @@
         <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
         <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="positive" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p id="like1"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="negative" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p  id="dislike1"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
 
     <h1 class="aspect">ASPECT2</h1>
@@ -268,22 +272,23 @@
         <div id="likes" {{url1_aspect1_percentageLikes}}></div>
         <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="verify_btn"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle" />(50)</p>
+      <p class="emoji" id="like2">
+        <input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
           
-      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike2"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
     <div id="all1">
       <div id="bar1">
         <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
         <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="like3"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike3"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
 
 
@@ -293,22 +298,22 @@
         <div id="likes" {{url1_aspect1_percentageLikes}}></div>
         <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji" id="like4"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike4"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
     <div id="all1">
       <div id="bar1">
         <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
         <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji" id="like5"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike5"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
     <h1 class="aspect">ASPECT4</h1>
     <div id="all">
@@ -316,22 +321,22 @@
         <div id="likes" {{url1_aspect1_percentageLikes}}></div>
         <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji" id="like6"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike6"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
     <div id="all1">
       <div id="bar1">
         <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
         <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji" id="like7"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike7"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
     <h1 class="aspect">ASPECT5</h1>
     <div id="all">
@@ -339,23 +344,59 @@
         <div id="likes" {{url1_aspect1_percentageLikes}}></div>
         <div id="dislikes" {{url1_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji" id="like8"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike8"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
     <div id="all1">
       <div id="bar1">
         <div id="likes1" {{url2_aspect1_percentageLikes}}></div>
         <div id="dislikes1" {{url2_aspect1_percentageDislikes}}></div>
       </div>
-      <p id="likeButton1"><img src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji" id="like9"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
 
-      <p id="dislikeButton1"><img src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
-          style="vertical-align:middle">(50)</p>
+      <p class="emoji"  id="dislike9"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico" width="23" height="30"
+          style="vertical-align:middle"  data-toggle="modal" data-target="#myModal2"  />(50)</p>
     </div>
+
+
+    <div class="container demo">
+	
+	
+      <div class="text-center">
+        
+    
+        <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
+          Right Sidebar Modal
+        </button>
+      </div>
+    
+      
+      
+      <!-- Modal -->
+      <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+    
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel2">Aspect Wise Reviews</h4>
+            </div>
+    
+            <div class="modal-body">
+              <p> Review Content here
+              </p>
+            </div>
+    
+          </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+      </div><!-- modal -->
+      
+      
+    </div><!-- container -->
   
   {%endautoescape%}
 

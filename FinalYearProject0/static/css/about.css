@@ -3,7 +3,7 @@
     padding-top:30px;
 }
 #services .box { 
-    /*border: 2px solid brown;*/
+    /*border: 2px solid brown; hii*/
     padding: 34px;
     margin: 44px 55px;
     border-radius: 28px;
@@ -73,6 +73,7 @@
 .team-member{
     background-color:#010146;
     display: inline-flex;
+    width:100%;
 }
 .section-header h2{
     text-transform: uppercase;

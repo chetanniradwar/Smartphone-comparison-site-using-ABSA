@@ -312,7 +312,7 @@ def scrapping(url1,url2) :
             link1.append(t['href'])
         #print(link1) 
         f_url=link1.pop()
-        l_url=('https://www.amazon.in'+str(f_url))
+        l_url=('https://www.amazon.in'+str(f_url))  #chetan
         i=1
         while i<=3:
             ss=driver.get(str(l_url)+'&pageNumber='+str(i))

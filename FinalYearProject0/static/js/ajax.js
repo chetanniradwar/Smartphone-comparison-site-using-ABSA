@@ -1,5 +1,5 @@
-$("#verify_btn").click(function () {
-    alert('fired');
+$(".emoji").click(function () {
+    
     var idname = this.id;
     
     $.ajax({
@@ -12,8 +12,9 @@ $("#verify_btn").click(function () {
      
       success: function (reviewlist) {
         
-          alert(reviewlist[0]);
-          console.log(reviewlist[1])
+          
+          console.log(reviewlist[0])
+          $(".modal-body").text(reviewlist[0]);
         }
     
   });
