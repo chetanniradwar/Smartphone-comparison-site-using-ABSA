@@ -12,21 +12,29 @@ $(".emoji").click(function () {
      
       success: function (reviewlist) {
         
+          $(".modal-body").empty();
+          // console.log(reviewlist[0])
           
-          console.log(reviewlist[0])
-          $(".modal-body").text(reviewlist[0]);
+          var i;
+          for (i = 0; i < reviewlist.length; i++) {
+          $(".modal-body").append(`<p>${reviewlist[i]}</p><hr>`);
+          // $(".modal-body").text(reviewlist);
+          }
         }
     
   });
 
 });
+
+
+//This is loding gif
 $(window).load(function() {
-  // Animate loader off screen
+
   $(".se-pre-con").fadeOut("slow");;
 });
 
 $("#ok").click(function(){
-  $("#hidder").hide();
+  $("#hidder").css("filter","blur(3px)");
   $(".se-pre-con").show();
 
 });

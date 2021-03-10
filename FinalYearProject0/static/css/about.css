@@ -11,6 +11,16 @@
     margin-bottom: 20px;
     
 }
+body{
+    font-family: Open Sans,sans-serif;
+    color: #2b3e51;
+    font-size: 1.125rem;
+    line-height: 1.89;
+}
+h2,h3{
+    font-family: Open Sans,sans-serif;  
+}
+
 .center{
     position: absolute;
     display: inline-block;
@@ -20,7 +30,7 @@
     line-height: 1.5;
     padding-right: 111px;
     font-size:21px;
-    font-family:'Times New Roman', Times, serif;
+    font-family: Open Sans,sans-serif;;
 }
 .middle{
     position: absolute;
@@ -54,7 +64,7 @@
     line-height: 1.5;
     padding-left: 111px;
     font-size:21px;
-    font-family:'Times New Roman', Times, serif;
+   font-family: Open Sans,sans-serif;
 }
 .middle1{
     position: absolute;
@@ -65,7 +75,7 @@
 }
 .box1 img{
     display: inline-block;
-    padding-left: 57%;
+    padding-left: 63%;
     width: 463px;
     margin-top: 45px;
     height: 225px;
@@ -83,6 +93,7 @@
     background-color: #010146;
     text-align: center;
     font-size: 35px;
+    font-family: Open Sans,sans-serif;
     letter-spacing: 5px;
 }
 .title{

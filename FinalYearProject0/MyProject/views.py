@@ -8,7 +8,8 @@ import requests as rq
 import pandas as pd
 from time import sleep
 import re
-
+import aspect_based_sentiment_analysis as absa
+modal_list=[]
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -22,28 +23,70 @@ def about(request):
 def outputcompare(request):
     url1=request.POST['url1']
     url2=request.POST['url2']
-    spectsdict=scrapping(url1,url2)
+    nlp=absa_analysis()
+    url1_url2_dict=scrapping(url1,url2,nlp)
 
     #  def analysis(){}
     
     
-    barvalues=showbar()
-    spectsdict.update(barvalues)
+    #barvalues=showbar()
+    #spectsdict.update(barvalues)
     
     #print(spectsdict)
-    return render(request,'compare.html',spectsdict)
+    return render(request,'compare.html',url1_url2_dict)
 
 
 
 def sortreviews(request) :
+
     idname = request.GET.get('idname', None)
     print(idname)
     reviewslist=[]
+    if(idname=="like0"):
+        reviewlist=modal_list[0]
+    elif(idname=="dislike0"):
+        reviewlist=modal_list[1]
+    if(idname=="like1"):
+        reviewlist=modal_list[10]
+    elif(idname=="dislike1"):
+        reviewlist=modal_list[11]
+    if(idname=="like2"):
+        reviewlist=modal_list[2]
+    elif(idname=="dislike2"):
+        reviewlist=modal_list[3]
+    if(idname=="like3"):
+        reviewlist=modal_list[12]
+    elif(idname=="dislike3"):
+        reviewlist=modal_list[13]
+    if(idname=="like4"):
+        reviewlist=modal_list[4]
+    elif(idname=="dislike4"):
+        reviewlist=modal_list[5]
+    if(idname=="like5"):
+        reviewlist=modal_list[14]
+    elif(idname=="dislike5"):
+        reviewlist=modal_list[15]
+    if(idname=="like6"):
+        reviewlist=modal_list[6]
+    elif(idname=="dislike6"):
+        reviewlist=modal_list[7]
+    if(idname=="like7"):
+        reviewlist=modal_list[16]
+    elif(idname=="dislike7"):
+        reviewlist=modal_list[17]
+    if(idname=="like8"):
+        reviewlist=modal_list[8]
+    elif(idname=="dislike8"):
+        reviewlist=modal_list[9]
+    if(idname=="like9"):
+        reviewlist=modal_list[18]
+    elif(idname=="dislike9"):
+        reviewlist=modal_list[19]
     reviewslist.append(idname)
     reviewslist.append("ChetamNIradwar")
     return JsonResponse(reviewslist,safe=False)
 
-def scrapping(url1,url2) :
+def scrapping(url1,url2,nlp) :
     
     comment=[]
     comment1=[]
@@ -78,34 +121,71 @@ def scrapping(url1,url2) :
         src=imgscrp.find('div',{'class':'_1BweB8'})
         srcV1=src.find('img',{'class':'_396cs4 _2amPTt _3qGmMb _3exPp9'})
         url1_image=srcV1.get('src')
-        print(srcV1.get('src'))
+        #print(srcV1.get('src'))
         key_spects.append('url1_image')
         spects.append(url1_image)
-        dict1=dict(zip(key_spects,spects))
-        #print(dict1)
+        url1_spects_img_dict=dict(zip(key_spects,spects))
+        #print(url1_spects_img_dict)
+
         #reviews scrapping
+        # driver.execute_script('window.scroll(0,3500)')
+        # sleep(1)
+        # for t in soup1.findAll('a',attrs=({'href':re.compile("/product-reviews/")})) :
+        #     q = t.get('href')
+        #     link.append(q)
+        # #print(link)
+
+        # f_url=link.pop()
+        # l_url=('https://www.flipkart.com'+str(f_url))
+        # i=1
+        # while i<=4:
+        #     ss=driver.get(str(l_url)+'&page='+str(i))
+        #     qq=driver.current_url
+        #     r2=rq.get(qq)
+        #     soup=BeautifulSoup(r2.text,'html.parser')
+        #     for co in soup.find_all('div',{'class':'t-ZTKy'}) :
+        #         cc=co.get_text()
+        #         cl=cc.replace('READ MORE','')
+                
+        #         comment.append(cl)
+        #     i=i+1
         driver.execute_script('window.scroll(0,3500)')
-        sleep(1)
-        for t in soup1.findAll('a',attrs=({'href':re.compile("/product-reviews/")})) :
+        link=[]
+        comment=[]
+        for t in soup1.findAll('a',attrs=({'class':'col-3-12 hXkZu- _1pxF-h','href':re.compile("/product-reviews/")})) :
             q = t.get('href')
             link.append(q)
-        #print(link)
+        print(link)
+        camera_link=link[0]
+        battery_link=link[1]
+        display_link=link[2]
+        vfm_link=link[3]
 
-        f_url=link.pop()
-        l_url=('https://www.flipkart.com'+str(f_url))
-        i=1
-        while i<=1:
-            ss=driver.get(str(l_url)+'&page='+str(i))
-            qq=driver.current_url
-            r2=rq.get(qq)
-            soup=BeautifulSoup(r2.text,'html.parser')
-            for co in soup.find_all('div',{'class':'t-ZTKy'}) :
-                cc=co.get_text()
-                cl=cc.replace('READ MORE','')
-                
-                comment.append(cl)
-            i=i+1
-        
+        # print(camera_link)
+        # print(vfm_link)
+        camera_reviews=[]
+        battery_reviews=[]
+        display_reviews=[]
+        vfm_reviews=[]
+        performance_reviews=[]
+         
+        url1_camera_reviews=flipkart_scapper(camera_link,driver)
+        url1_battery_reviews=flipkart_scapper(battery_link,driver)
+        url1_display_reviews=flipkart_scapper(display_link,driver)
+        url1_vfm_reviews=flipkart_scapper(vfm_link,driver)
+        qq=driver.current_url
+        r2=rq.get(qq)
+        soup=BeautifulSoup(r2.text,'html.parser')
+        per_review=soup.find('div',{'class':'_33iqLu'})
+        for x in per_review.find_all('a',{'class':''}):
+            # print(x)
+            x = x.get('href')
+
+        # print(x)
+        performance_link=x
+
+        url1_performance_reviews=flipkart_scapper(performance_link,driver)
+        # print(url1_performance_reviews)
     else :
         header= {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
         driver=webdriver.Chrome(executable_path=r"C:\Users\Chetan Niradwar\Downloads\chromedriver.exe")
@@ -125,6 +205,7 @@ def scrapping(url1,url2) :
         for i in spects: 
             if i not in spects_set: 
                 spects_set.append(i)
+        # print(spects_set)
         spects_set[0]="PrimaryCamera"
         spects_set[3]="ResolutionType"
         spects_set[4]="BatteryCapacity"
@@ -148,7 +229,7 @@ def scrapping(url1,url2) :
             if i not in key_spects_set: 
                 key_spects_set.append(i)
         
-        #print(key_spects_set)
+        # print(key_spects_set)
         #print(RAM1)
         
 
@@ -162,8 +243,8 @@ def scrapping(url1,url2) :
         key_spects_set.append(srcV2)
         
 
-        dict1=dict(zip(spects_set,key_spects_set))
-        print(dict1)
+        url1_spects_img_dict=dict(zip(spects_set,key_spects_set))
+        # print(url1_spects_img_dict)
 
 
         #reviews Scrapping
@@ -177,7 +258,7 @@ def scrapping(url1,url2) :
         f_url=link.pop()
         l_url=('https://www.amazon.in'+str(f_url))
         i=1
-        while i<=1:
+        while i<=4:
             ss=driver.get(str(l_url)+'&pageNumber='+str(i))
             qq=driver.current_url
             r2=rq.get(qq)
@@ -185,9 +266,67 @@ def scrapping(url1,url2) :
             for co in soup.find_all('span',{'class':'a-size-base review-text review-text-content'}) :
                 cc=co.get_text()
                 comment.append(cc)
-            i=i+1
-    df=pd.DataFrame([comment]).transpose()
-    df.to_excel(r'C:\Users\Chetan Niradwar\ChetanProject\Documents\\reviews_url1.xlsx')
+        i=i+1
+        amz_all_reviews=comment
+        cam=['camera','image','picture','photo','video','photography']
+        bat=['battery','backup','drain','charging','mah']
+        disp=['display','screen','density','resolution','ips','amoled']
+        value_for_money =['value','price','money','cost','expensive']
+        perfor=['processor','performance','game','graphic','COD']
+        
+        for text in amz_all_reviews:
+            text=text.lower()
+            if any(word in text for word in cam):
+                url1_camera_reviews=text
+            if any(word in text for word in bat):
+                url1_display_reviews=text
+            if any(word in text for word in disp):
+                url1_battery_reviews=text
+            if any(word in text for word in value_for_money):
+                url1_vfm_reviews=text
+            if any(word in text for word in perfor):
+                url1_performance_reviews=text   
+    # df=pd.DataFrame([comment]).transpose()
+    # df.to_excel(r'C:\Users\Chetan Niradwar\ChetanProject\Documents\\reviews_url1.xlsx')
+   
+    # sentiment Classification
+    url1_camera_list=sentiment_classify(url1_camera_reviews,'Camera',nlp)
+    url1_battery_list=sentiment_classify(url1_battery_reviews,'Battery',nlp)
+    url1_display_list=sentiment_classify(url1_display_reviews,'Display',nlp)
+    url1_vfm_list=sentiment_classify(url1_vfm_reviews,'Money',nlp)
+    url1_performance_list=sentiment_classify(url1_performance_reviews,'Performance',nlp)
+    modal_list.append(url1_camera_list[0])
+    modal_list.append(url1_camera_list[1])
+    modal_list.append(url1_battery_list[0])
+    modal_list.append(url1_battery_list[1])
+    modal_list.append(url1_display_list[0])
+    modal_list.append(url1_display_list[1])
+    modal_list.append(url1_vfm_list[0])
+    modal_list.append(url1_vfm_list[1])
+    modal_list.append(url1_performance_list[0])
+    modal_list.append(url1_performance_list[1])
+    url1_dict={"url1_camera_per_pos_count":url1_camera_list[2],
+    "url1_camera_per_neg_count":url1_camera_list[3],
+    "url1_camera_pos_count":url1_camera_list[4],
+    "url1_camera_neg_count":url1_camera_list[5],
+    "url1_battery_per_pos_count":url1_battery_list[2],
+    "url1_battery_per_neg_count":url1_battery_list[3],
+    "url1_battery_pos_count":url1_battery_list[4],
+    "url1_battery_neg_count":url1_battery_list[5],
+    "url1_display_per_pos_count":url1_display_list[2],
+    "url1_display_per_neg_count":url1_display_list[3],
+    "url1_display_pos_count":url1_display_list[4],
+    "url1_display_neg_count":url1_display_list[5],
+    "url1_vfm_per_pos_count":url1_vfm_list[2],
+    "url1_vfm_per_neg_count":url1_vfm_list[3],
+    "url1_vfm_pos_count":url1_vfm_list[4],
+    "url1_vfm_neg_count":url1_vfm_list[5],
+    "url1_performance_per_pos_count":url1_performance_list[2],
+    "url1_performance_per_neg_count":url1_performance_list[3],
+    "url1_performance_pos_count":url1_performance_list[4],
+    "url1_performance_neg_count":url1_performance_list[5]
+    }
+
 
     if "flipkart.com" in url2 :
         driver=webdriver.Chrome(executable_path=r"C:\Users\Chetan Niradwar\Downloads\chromedriver.exe")
@@ -215,34 +354,72 @@ def scrapping(url1,url2) :
         srcV1=src.find('img',{'class':'_396cs4 _2amPTt _3qGmMb _3exPp9'})
         url2_image1=srcV1.get('src')
         
-        print(srcV1.get('src'))
+        # print(srcV1.get('src'))
         key_spects1.append('url2_image1')
         spects1.append(url2_image1)
 
-        dict2=dict(zip(key_spects1,spects1))
-        #print(dict2)
+        url2_spects_img_dict=dict(zip(key_spects1,spects1))
+        #print(url2_spects_img_dict)
         #reviews scrapping
-        driver.execute_script('window.scroll(0,3500)')
-        sleep(1)
-        for t in soup1.findAll('a',attrs=({'href':re.compile("/product-reviews/")})) :
-            q = t.get('href')
-            link1.append(q)
-        #print(link)
+        # driver.execute_script('window.scroll(0,3500)')
+        # sleep(1)
+        # for t in soup1.findAll('a',attrs=({'href':re.compile("/product-reviews/")})) :
+        #     q = t.get('href')
+        #     link1.append(q)
+        # #print(link)
 
-        f_url=link1.pop()
-        l_url=('https://www.flipkart.com'+str(f_url))
-        i=1
-        while i<=2:
-            ss=driver.get(str(l_url)+'&page='+str(i))
-            qq=driver.current_url
-            r2=rq.get(qq)
-            soup=BeautifulSoup(r2.text,'html.parser')
-            for co in soup.find_all('div',{'class':'t-ZTKy'}) :
-                cc=co.get_text()
-                cl=cc.replace('READ MORE','')
+        # f_url=link1.pop()
+        # l_url=('https://www.flipkart.com'+str(f_url))
+        # i=1
+        # while i<=4:
+        #     ss=driver.get(str(l_url)+'&page='+str(i))
+        #     qq=driver.current_url
+        #     r2=rq.get(qq)
+        #     soup=BeautifulSoup(r2.text,'html.parser')
+        #     for co in soup.find_all('div',{'class':'t-ZTKy'}) :
+        #         cc=co.get_text()
+        #         cl=cc.replace('READ MORE','')
                 
-                comment1.append(cl)
-            i=i+1
+        #         comment1.append(cl)
+        #     i=i+1
+        driver.execute_script('window.scroll(0,3500)')
+        link=[]
+        comment=[]
+        for t in soup1.findAll('a',attrs=({'class':'col-3-12 hXkZu- _1pxF-h','href':re.compile("/product-reviews/")})) :
+            q = t.get('href')
+            link.append(q)
+        # print(link)
+        camera_link=link[0]
+        battery_link=link[1]
+        display_link=link[2]
+        vfm_link=link[3]
+
+        # print(camera_link)
+        # print(vfm_link)
+        camera_reviews=[]
+        battery_reviews=[]
+        display_reviews=[]
+        vfm_reviews=[]
+        performance_reviews=[]
+ 
+        url2_camera_reviews=flipkart_scapper(camera_link,driver)
+        url2_battery_reviews=flipkart_scapper(battery_link,driver)
+        url2_display_reviews=flipkart_scapper(display_link,driver)
+        url2_vfm_reviews=flipkart_scapper(vfm_link,driver)
+        qq=driver.current_url
+        r2=rq.get(qq)
+        soup=BeautifulSoup(r2.text,'html.parser')
+        per_review=soup.find('div',{'class':'_33iqLu'})
+        for x in per_review.find_all('a',{'class':''}):
+            # print(x)
+            x = x.get('href')
+
+        # print(x)
+        performance_link=x
+
+        url2_performance_reviews=flipkart_scapper(performance_link,driver)
+        # print(url2_performance_reviews)
+    
         
     else :
         header= {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
@@ -252,7 +429,7 @@ def scrapping(url1,url2) :
         driver.get(url2)
         r1=rq.get(url2,headers=header)
         soup1 =BeautifulSoup(r1.text,'html.parser')
-        imgscrp1=BeautifulSoup(driver.page_source,'htmal.parser')
+        imgscrp1=BeautifulSoup(driver.page_source,'html.parser')
         #spects scrapping
         RAM1= soup1.find_all('div',{'class':'attribute-heading-label'})
         spects1=[]
@@ -302,8 +479,8 @@ def scrapping(url1,url2) :
         key_spects_set1.append(srcV2)
         
 
-        dict2=dict(zip(spects_set1,key_spects_set1))
-        print(dict2)
+        url2_spects_img_dict=dict(zip(spects_set1,key_spects_set1))
+        # print(url2_spects_img_dict)
 
         #reviews Scrapping
         driver.execute_script('window.scroll(0,3500)')
@@ -314,7 +491,7 @@ def scrapping(url1,url2) :
         f_url=link1.pop()
         l_url=('https://www.amazon.in'+str(f_url))  #chetan
         i=1
-        while i<=3:
+        while i<=4:
             ss=driver.get(str(l_url)+'&pageNumber='+str(i))
             qq=driver.current_url
             r2=rq.get(qq)
@@ -323,33 +500,121 @@ def scrapping(url1,url2) :
                 cc=co.get_text()
                 comment1.append(cc)
             i=i+1
-    df=pd.DataFrame([comment1]).transpose()
-    df.to_excel(r'C:\Users\Chetan Niradwar\ChetanProject\Documents\\reviews_url2.xlsx')
-    dict1.update(dict2)
-    return dict1
+        amz_all_reviews=comment1
+        cam=['camera','image','picture','photo','video','photography']
+        bat=['battery','backup','drain','charging','mah']
+        disp=['display','screen','density','resolution','ips','amoled']
+        value_for_money =['value','price','money','cost','expensive']
+        perfor=['processor','performance','game','graphic','COD']
+        
+        for text in amz_all_reviews:
+            text=text.lower()
+            if any(word in text for word in cam):
+                url2_camera_reviews=text
+            if any(word in text for word in bat):
+                url2_display_reviews=text
+            if any(word in text for word in disp):
+                url2_battery_reviews=text
+            if any(word in text for word in value_for_money):
+                url2_vfm_reviews=text
+            if any(word in text for word in perfor):
+                url2_performance_reviews=text
+    url2_camera_list=sentiment_classify(url2_camera_reviews,'Camera',nlp)
+    url2_battery_list=sentiment_classify(url2_battery_reviews,'Battery',nlp)
+    url2_display_list=sentiment_classify(url2_display_reviews,'Display',nlp)
+    url2_vfm_list=sentiment_classify(url2_vfm_reviews,'Money',nlp)
+    url2_performance_list=sentiment_classify(url2_performance_reviews,'Performance',nlp)
+    modal_list.append(url2_camera_list[0])
+    modal_list.append(url2_camera_list[1])
+    modal_list.append(url2_battery_list[0])
+    modal_list.append(url2_battery_list[1])
+    modal_list.append(url2_display_list[0])
+    modal_list.append(url2_display_list[1])
+    modal_list.append(url2_vfm_list[0])
+    modal_list.append(url2_vfm_list[1])
+    modal_list.append(url2_performance_list[0])
+    url2_dict={"url2_camera_per_pos_count":url2_camera_list[2],
+    "url2_camera_per_neg_count":url2_camera_list[3],
+    "url2_camera_pos_count":url2_camera_list[4],
+    "url2_camera_neg_count":url2_camera_list[5],
+    "url2_battery_per_pos_count":url2_battery_list[2],
+    "url2_battery_per_neg_count":url2_battery_list[3],
+    "url2_battery_pos_count":url2_battery_list[4],
+    "url2_battery_neg_count":url2_battery_list[5],
+    "url2_display_per_pos_count":url2_display_list[2],
+    "url2_display_per_neg_count":url2_display_list[3],
+    "url2_display_pos_count":url2_display_list[4],
+    "url2_display_neg_count":url2_display_list[5],
+    "url2_vfm_per_pos_count":url2_vfm_list[2],
+    "url2_vfm_per_neg_count":url2_vfm_list[3],
+    "url2_vfm_pos_count":url2_vfm_list[4],
+    "url2_vfm_neg_count":url2_vfm_list[5],
+    "url2_performance_per_pos_count":url2_performance_list[2],
+    "url2_performance_per_neg_count":url2_performance_list[3],
+    "url2_performance_pos_count":url2_performance_list[4],
+    "url2_performance_neg_count":url2_performance_list[5]
+    }        
+    # df=pd.DataFrame([comment1]).transpose()
+    # df.to_excel(r'C:\Users\Chetan Niradwar\ChetanProject\Documents\\reviews_url2.xlsx')
+    url1_spects_img_dict.update(url2_spects_img_dict)
+    url1_dict.update(url1_spects_img_dict)
+    url1_dict.update(url2_dict)
+    
+    return url1_dict
+    
 
      
 
-#def analysis():
-
+def absa_analysis():
+    name = 'absa/classifier-lapt-0.2'
+    recognizer = absa.aux_models.BasicPatternRecognizer()
+    nlp = absa.load(name,pattern_recognizer=recognizer)
+    return nlp
  #   return 
 
-def showbar():
-    likes=10
-    dislikes=50
-    total=likes+dislikes
-    perlikes=(likes/total)*100
-    perdislikes=(dislikes/total)*100
-    url1_aspect1_percentageLikes= 'style="width:'+str(perlikes)+'%;"'
-    url1_aspect1_percentageDislikes= 'style="width:'+str(perdislikes)+'%;"'
-    likes=230
-    dislikes=500
-    total=likes+dislikes
-    perlikes=(likes/total)*100
-    perdislikes=(dislikes/total)*100
-    url2_aspect1_percentageLikes= 'style="width:'+str(perlikes)+'%;"'
-    url2_aspect1_percentageDislikes= 'style="width:'+str(perdislikes)+'%;"'
+def sentiment_classify(review_list,aspect,nlp):
 
-    barvalue={"url1_aspect1_percentageLikes":url1_aspect1_percentageLikes, "url1_aspect1_percentageDislikes":url1_aspect1_percentageDislikes,
-    "url2_aspect1_percentageLikes":url2_aspect1_percentageLikes, "url2_aspect1_percentageDislikes":url2_aspect1_percentageDislikes}
-    return barvalue
+    positive_count=0
+    negative_count=0
+    pos_review=[]
+    neg_review=[]
+    dis_per_pos_count=""
+    dis_per_neg_count=""
+    total_reviews=len(review_list)
+    for each_review in review_list:
+        completed_task = nlp(each_review, aspects=['Design',aspect])
+        design,target= completed_task.examples
+        sent=target.sentiment
+        sentV2=str(sent)
+        sentV3=sentV2[10:]
+        if (sentV3=="positive"):
+            positive_count=positive_count + 1
+            pos_review.append(each_review)
+        else:
+            negative_count=negative_count + 1
+            neg_review.append(each_review)
+    per_pos_count=(positive_count/total_reviews)*100
+    per_neg_count=100-per_pos_count
+    #to Display in html format
+    dis_per_pos_count= 'style="width:'+str(per_pos_count)+'%;"'
+    dis_per_neg_count= 'style="width:'+str(per_neg_count)+'%;"'
+    return [pos_review,neg_review,dis_per_pos_count,dis_per_neg_count,positive_count,negative_count]
+
+def flipkart_scapper(apsect_link,driver):
+    review_list=[]
+    l_url=('https://www.flipkart.com'+str(apsect_link))
+    i=1
+    while i<=1:
+        ss=driver.get(str(l_url)+'&page='+str(i))
+        qq=driver.current_url
+        r2=rq.get(qq)
+        soup=BeautifulSoup(r2.text,'html.parser')
+        for co in soup.find_all('div',{'class':'t-ZTKy'}) :
+            cc=co.get_text()
+            cc=cc.replace('...','')
+            cl=cc.replace('READ MORE','')
+
+            
+            review_list.append(cl)
+        i=i+1
+    return review_list
