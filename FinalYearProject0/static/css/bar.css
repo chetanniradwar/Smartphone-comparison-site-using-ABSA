@@ -1,13 +1,8 @@
 #all{
-	
-	width: 50%;
-    /* margin-bottom: 5px; */
-    /* text-align: left; */
-    padding: 0px;
-    position: relative; 
-	top: 55px; 
-	left:15%;
-	display: inline-block;
+	display: flex;
+	/* border:2px solid magenta; */
+	width: 40%;
+    
 }
 
 
@@ -23,14 +18,14 @@
 	background:rgb(230, 11, 11);
 	float:right;
 }
-#like1,#like2,#like3,#like4,#like5,#like6,#like7,#like8,#like9{
+#like0,#like1,#like2,#like3,#like4,#like5,#like6,#like7,#like8,#like9{
 	margin-left: 8%;
     padding:3%;
     margin-right: 4%;
     
     display: inline-block;
 }
-#dislike1,#dislike2,#dislike3,#dislike4,#dislike5,#dislike6,#dislike7,#dislike8,#dislike9
+#dislike0,#dislike1,#dislike2,#dislike3,#dislike4,#dislike5,#dislike6,#dislike7,#dislike8,#dislike9
 {
 
 	display:inline-block;
@@ -44,21 +39,15 @@
 	position: relative;
 	margin-left: 2px;
 	left: 0px;
-	width:60%;
+	/* width:60%; */
 	
 	
 }
 #all1{
-	
-    width: 50%;
-    /* margin-bottom: 5px; */
-    /* text-align: left; */
-    padding: 11px;
-	position: relative;
-	/*top:-58px;*/
-    bottom: 40px;
-    left: 50%;
-    display: inline-block;
+	display: flex;
+	width: 40%;
+	/* border:2px solid magenta;  */
+  
 	
 	
 }
@@ -94,7 +83,7 @@
 	position: relative;
 	margin-left: 2px;
 	left: 0px;
-	width:60%;
+	/* width:60%; */
 	
 	
 

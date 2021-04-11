@@ -41,50 +41,53 @@ def sortreviews(request) :
 
     idname = request.GET.get('idname', None)
     print(idname)
-    reviewslist=[]
-    if(idname=="like0"):
-        reviewlist=modal_list[0]
-    elif(idname=="dislike0"):
-        reviewlist=modal_list[1]
-    if(idname=="like1"):
-        reviewlist=modal_list[10]
-    elif(idname=="dislike1"):
-        reviewlist=modal_list[11]
-    if(idname=="like2"):
-        reviewlist=modal_list[2]
-    elif(idname=="dislike2"):
-        reviewlist=modal_list[3]
-    if(idname=="like3"):
-        reviewlist=modal_list[12]
-    elif(idname=="dislike3"):
-        reviewlist=modal_list[13]
-    if(idname=="like4"):
-        reviewlist=modal_list[4]
-    elif(idname=="dislike4"):
-        reviewlist=modal_list[5]
-    if(idname=="like5"):
-        reviewlist=modal_list[14]
-    elif(idname=="dislike5"):
-        reviewlist=modal_list[15]
-    if(idname=="like6"):
-        reviewlist=modal_list[6]
-    elif(idname=="dislike6"):
-        reviewlist=modal_list[7]
-    if(idname=="like7"):
-        reviewlist=modal_list[16]
-    elif(idname=="dislike7"):
-        reviewlist=modal_list[17]
-    if(idname=="like8"):
-        reviewlist=modal_list[8]
-    elif(idname=="dislike8"):
-        reviewlist=modal_list[9]
-    if(idname=="like9"):
-        reviewlist=modal_list[18]
-    elif(idname=="dislike9"):
-        reviewlist=modal_list[19]
-    reviewslist.append(idname)
-    reviewslist.append("ChetamNIradwar")
-    return JsonResponse(reviewslist,safe=False)
+    reviewlist=[]
+    try:
+        if(idname=="like0"):
+            reviewlist=modal_list[0]
+        elif(idname=="dislike0"):
+            reviewlist=modal_list[1]
+        if(idname=="like1"):
+            reviewlist=modal_list[10]
+        elif(idname=="dislike1"):
+            reviewlist=modal_list[11]
+        if(idname=="like2"):
+            reviewlist=modal_list[2]
+        elif(idname=="dislike2"):
+            reviewlist=modal_list[3]
+        if(idname=="like3"):
+            reviewlist=modal_list[12]
+        elif(idname=="dislike3"):
+            reviewlist=modal_list[13]
+        if(idname=="like4"):
+            reviewlist=modal_list[4]
+        elif(idname=="dislike4"):
+            reviewlist=modal_list[5]
+        if(idname=="like5"):
+            reviewlist=modal_list[14]
+        elif(idname=="dislike5"):
+            reviewlist=modal_list[15]
+        if(idname=="like6"):
+            reviewlist=modal_list[6]
+        elif(idname=="dislike6"):
+            reviewlist=modal_list[7]
+        if(idname=="like7"):
+            reviewlist=modal_list[16]
+        elif(idname=="dislike7"):
+            reviewlist=modal_list[17]
+        if(idname=="like8"):
+            reviewlist=modal_list[8]
+        elif(idname=="dislike8"):
+            reviewlist=modal_list[9]
+        if(idname=="like9"):
+            reviewlist=modal_list[18]
+        elif(idname=="dislike9"):
+            reviewlist=modal_list[19]
+    except IndexError:
+        reviewlist.append('-1')
+    reviewlist.append(idname)
+    reviewlist.append("ChetamNiradwar")
+    return JsonResponse(reviewlist,safe=False)
 
 def scrapping(url1,url2,nlp) :
     

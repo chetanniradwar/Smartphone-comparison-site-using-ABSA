@@ -5,16 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" , initail-scale="1.0">
   <!--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">-->
-  {%load static%} 
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 </head>
 <style>
-      body {
-          margin: 0px;
-          font-family: Arial, Helvetica, sans-serif;
-          
-      }
-      .container {
+  body {
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+</style>
+<!-- .container {
          overflow: hidden;
          background-color: black;
          padding:15px;
@@ -37,28 +39,35 @@
       .ml-3{
         padding-right:300px;
         padding-left:50px;
-      }
-</style>
+      } 
+    </style> -->
+
 
 <body>
-  <header class="Header">
-    <div class="container">
-      <a class="flex">
-        <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-          viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>-->
-        <span class="ml-3 text-xl">Aspect Based Sentiment Analysis</span>
-      </a>
-              <nav class="link">
-                <a href="http://127.0.0.1:8000/home.html" class="Button">HOME</a>
-                <a href="http://127.0.0.1:8000/compare.html" class="Button">COMPARE</a>
-                <a class="Button">SMARTPHONE DETAILS</a>
-                <a href="http://127.0.0.1:8000/about.html" class="Button">ABOUT</a>
-                
-              </nav>
+  <header>
+    <nav class="nav-container">
+<div class="res-block">
+      <div class="heading">
+        Aspect Based Sentiment Analysis
+        
+      </div>
+      <div class="burger" >
+        <div class="topnav-icon"></div>
+        <div class="topnav-icon"></div>
+        <div class="topnav-icon"></div>
+      </div>
     </div>
+      <div class="nav-links">
+        <ul>
+          <li> <a href="{%url 'home'%}"class="Button">HOME</a></li>
+          <li> <a href="{%url 'compare'%}" class="Button">COMPARE</a></li>
+          <li> <a href="#" class="Button">SMARTPHONE DETAILS</a></li>
+          <li> <a href="{%url 'about'%}" class="Button">ABOUT</a></li>
+        </ul>
+       
+      </div>
+    </nav>
+
   </header>
 
   <div class="article-module--container--BVGog base-module--container--3oWdy">
@@ -96,7 +105,7 @@
       <ol>
         <li><a href="/#what-is">What is Aspect-Based Sentiment Analysis?</a> </li>
         <li><a href="/#importance">Why is it Important?</a></li>
-        
+
         <li><a href="/#use-cases">Use Cases &amp; Applications</a></li>
       </ol>
       <p>It’s time to learn more about aspect-based sentiment analysis. Let's get started!</p>
@@ -117,7 +126,7 @@
         <li><strong>Sentiments:</strong> positive or negative opinions about a particular aspect.</li>
         <li><strong>Aspects:</strong> the thing or topic that is being talked about. </li>
       </ul>
-      
+
       <h2 class="section" id="importance">2. Why is Aspect-Based Sentiment Analysis Important?</h2>
       <p>Customers are more vocal than ever. They love leaving feedback – good and bad – making them a valuable resource
         for businesses. <a href="https://www.lyfemarketing.com/blog/social-media-marketing-statistics/" target="_blank"
@@ -172,7 +181,7 @@
         deeper understanding about specific products and services quickly and easily, and really focus on their
         customers’ needs and expectations. It means businesses take into account everything a customer says and can
         create a customer-centric experience. </p>
-      
+
       <h2 class="section" id="use-cases">3. Use Cases and Applications</h2>
       <p>Aspect-based sentiment analysis is a very versatile text analysis model that can be used across all industries
         and departments, to automate business processes and gain more accurate insights to make better decisions. </p>
@@ -228,9 +237,10 @@
         organizations. Customers want to feel like they’re being listened to, and by using deeper machine learning
         models like aspect-based sentiment analysis, businesses can send quick, efficient and personalized responses.
         And for customer support teams it means streamlining processes and gaining more valuable insights. </p>
-     
+
     </div>
   </div>
+  <script src="{% static 'js/nav.js' %}"></script>
 </body>
 
 </html>

@@ -10,14 +10,15 @@ $(".emoji").click(function () {
         'idname': idname
       },
      
-      success: function (reviewlist) {
+      success: function (review_list) {
         
           $(".modal-body").empty();
           // console.log(reviewlist[0])
           
           var i;
-          for (i = 0; i < reviewlist.length; i++) {
-          $(".modal-body").append(`<p>${reviewlist[i]}</p><hr>`);
+          for (i = 0; i < review_list.length; i++) {
+          $(".modal-body").append(`<p>${review_list[i]}</p><hr>`);
+          // console.log(reviewlist[i]);
           // $(".modal-body").text(reviewlist);
           }
         }

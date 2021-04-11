@@ -10,13 +10,14 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   {%load static%}
   <link rel="stylesheet" href="{% static 'css/bar.css' %}">
   <link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/sidebar.css' %}"><!-- Resource style -->
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
   <script src="{% static 'js/modernizr.js'%}"></script> <!-- Modernizr -->
 </head>
 <style>
@@ -58,127 +59,40 @@
   <div class="se-pre-con"></div>
   <div id="hidder">
     <header class="Header">
-      <div class="container">
-        <a class="flex">
-          <!--<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>-->
-          <span class="ml-3">Aspect Based Sentiment Analysis</span>
-        </a>
-        <nav class="link">
-          <a href="http://127.0.0.1:8000/home.html" class="Button">HOME</a>
-          <a href="http://127.0.0.1:8000/compare.html" class="Button">COMPARE</a>
-          <a class="Button">SMARTPHONE DETAILS</a>
-          <a href="http://127.0.0.1:8000/about.html" class="Button">ABOUT</a>
+      <nav class="nav-container">
+        <div class="res-block">
+          <div class="heading">
+            Aspect Based Sentiment Analysis
 
-        </nav>
+          </div>
+          <div class="burger">
+            <div class="topnav-icon"></div>
+            <div class="topnav-icon"></div>
+            <div class="topnav-icon"></div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <ul>
+            <li> <a href="{%url 'home'%}"class="Button">HOME</a></li>
+            <li> <a href="{%url 'compare'%}" class="Button">COMPARE</a></li>
+            <li> <a href="#" class="Button">SMARTPHONE DETAILS</a></li>
+            <li> <a href="{%url 'about'%}" class="Button">ABOUT</a></li>
+          </ul>
+
+        </div>
+      </nav>
 
 
-      </div>
+
     </header>
     <form action="geturls" method="POST">
       {% csrf_token %}
-      <div>
-        <style>
-          input[type=text] {
-            width: 25%;
-            border: 2px solid #aaa;
-            border-radius: 4px;
-            margin: 2px 0;
-            margin-left: 27%;
-            margin-top: 10px;
-            outline: none;
-            padding: 8px;
-            box-sizing: border-box;
-            transition: .3s;
 
-          }
-
-          input[type="text"] focus {
-            border-color: dodgerBlue;
-            box-shadow: 0 0 8px 0 dodgerBlue;
-          }
-        </style>
+      <div class="input-holder">
         <input id='url1' type="text" name="url1" placeholder="Enter URL of 1st Smartphone">
-      </div>
-      <div>
-        <style>
-          input[type="text"] {
-            width: 25%;
-            border: 2px solid black;
-            border-radius: 4px;
-            margin: 2px 0;
-            margin-left: 50%;
-            margin-top: 10px;
-            outline: none;
-            padding: 8px;
-            box-sizing: border-box;
-            transition: .3s;
-
-          }
-
-          #url1 {
-            position: absolute;
-            margin-top: 60px;
-            margin-left: 10%;
-          }
-
-
-          #url2 {
-            position: absolute;
-            margin-top: 60px;
-            margin-left: 50%;
-          }
-
-          #ok {
-            position: relative;
-            top: 4px;
-            background-color: white;
-            border: 2px solid #4CAF50;
-            border-radius: 5px;
-            margin-top: 4%;
-            margin-left: 84%;
-            padding-left: 2.2rem;
-            padding-right: 2.2rem;
-            padding-top: 1.002rem;
-            padding-bottom: 1.002rem;
-          }
-
-          #ok:hover {
-            background-color: #4CAF50;
-            color: white;
-          }
-
-          input[type="text"] focus {
-            border-color: dodgerBlue;
-            box-shadow: 0 0 8px 0 dodgerBlue;
-          }
-
-          .no-js #loader {
-            display: none;
-          }
-
-          .js #loader {
-            display: block;
-            position: absolute;
-            left: 100px;
-            top: 0;
-          }
-
-          .se-pre-con {
-
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background: url("/static/img/Wedges-3s-200px.svg") center no-repeat rgba(0, 0, 0, 0.582);
-          }
-        </style>
         <input id='url2' type="text" name="url2" placeholder="Enter URL of 2nd Smartphone">
+        <input id='ok' type="submit">
       </div>
-      <input id='ok' type="submit">
     </form>
     <section class="cd-intro">
       <h1>Products Comparison Table</h1>
@@ -249,159 +163,189 @@
 
 
     {% autoescape off %}
-    <h1 class="aspect">CAMERA</h1>
-    <div id="all">
-      <div id="bar">
-        <div id="likes" {{url1_camera_per_pos_count}}></div>
-        <div id="dislikes" {{url1_camera_per_neg_count}}></div>
+    <div class="aspect-container">
+      <h1 class="aspect">CAMERA</h1>
+      <div class="graphs">
+        <div class="bar-emojies" id="all">
+          <div id="bar">
+            <div id="likes" {{url1_camera_per_pos_count}}></div>
+            <div id="dislikes" {{url1_camera_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like0"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_camera_pos_count}}</p>
+
+            <p class="emoji" id="dislike0"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_camera_neg_count}}</p>
+          </div>
+        </div>
+
+        <div class="bar-emojies" id="all1">
+          <div id="bar1">
+            <div id="likes1" {{url2_camera_per_pos_count}}></div>
+            <div id="dislikes1" {{url2_camera_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like1"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_camera_pos_count}}</p>
+
+            <p class="emoji" id="dislike1"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_camera_neg_count}}</p>
+          </div>
+        </div>
       </div>
-      <p class="emoji" id="like0"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_camera_pos_count}}</p>
 
-      <p class="emoji" id="dislike0"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_camera_neg_count}}</p>
-    </div>
-    <div id="all1">
-      <div id="bar1">
-        <div id="likes1" {{url2_camera_per_pos_count}}></div>
-        <div id="dislikes1" {{url2_camera_per_neg_count}}></div>
+      <h1 class="aspect">BATTERY</h1>
+      <div class="graphs">
+        <div class="bar-emojies" id="all">
+          <div id="bar">
+            <div id="likes" {{url1_battery_per_pos_count}}></div>
+            <div id="dislikes" {{url1_battery_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like2"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_battery_pos_count}}</p>
+
+            <p class="emoji" id="dislike2"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_battery_neg_count}}</p>
+          </div>
+        </div>
+
+        <div class="bar-emojies" id="all1">
+          <div id="bar1">
+            <div id="likes1" {{url2_battery_per_pos_count}}></div>
+            <div id="dislikes1" {{url2_battery_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like3"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_battery_pos_count}}</p>
+
+            <p class="emoji" id="dislike3"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_battery_neg_count}}</p>
+          </div>
+        </div>
       </div>
-      <p class="emoji" id="like1"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_camera_pos_count}}</p>
 
-      <p class="emoji" id="dislike1"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_camera_neg_count}}</p>
-    </div>
+      <h1 class="aspect">DISPLAY</h1>
+      <div class="graphs">
+        <div class="bar-emojies" id="all">
+          <div id="bar">
+            <div id="likes" {{url1_display_per_pos_count}}></div>
+            <div id="dislikes" {{url1_display_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like4"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_display_pos_count}}</p>
 
-    <h1 class="aspect">BATTERY</h1>
+            <p class="emoji" id="dislike4"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_display_neg_count}}</p>
+          </div>
+        </div>
 
-    <div id="all">
-      <div id="bar">
-        <div id="likes" {{url1_battery_per_pos_count}}></div>
-        <div id="dislikes" {{url1_battery_per_neg_count}}></div>
+        <div class="bar-emojies" id="all1">
+          <div id="bar1">
+            <div id="likes1" {{url2_display_per_pos_count}}></div>
+            <div id="dislikes1" {{url2_display_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like5"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_display_pos_count}}</p>
+
+            <p class="emoji" id="dislike5"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_display_neg_count}}</p>
+          </div>
+        </div>
       </div>
+      <h1 class="aspect">VALUE FOR MONEY</h1>
+      <div class="graphs">
+        <div class="bar-emojies" id="all">
+          <div id="bar">
+            <div id="likes" {{url1_vfm_per_pos_count}}></div>
+            <div id="dislikes" {{url1_camera_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like6"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_vfm_pos_count}}
+            </p>
 
-      <p class="emoji" id="like2"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_battery_pos_count}}</p>
+            <p class="emoji" id="dislike6"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url1_vfm_neg_count}}</p>
+          </div>
+        </div>
 
-      <p class="emoji" id="dislike2"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_battery_neg_count}}</p>
-    </div>
-    <div id="all1">
-      <div id="bar1">
-        <div id="likes1" {{url2_battery_per_pos_count}}></div>
-        <div id="dislikes1" {{url2_battery_per_neg_count}}></div>
+        <div class="bar-emojies" id="all1">
+          <div id="bar1">
+            <div id="likes1" {{url2_vfm_per_pos_count}}></div>
+            <div id="dislikes1" {{url2_vfm_per_neg_count}}></div>
+          </div>
+          <div class="emojies">
+            <p class="emoji" id="like7"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_vfm_pos_count}}
+            </p>
+
+            <p class="emoji" id="dislike7"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                data-target="#myModal2" />{{url2_vfm_neg_count}}</p>
+          </div>
+        </div>
       </div>
-      <p class="emoji" id="like3"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_battery_pos_count}}</p>
+      <h1 class="aspect">PERFORMANCE</h1>
+      <div class="graphs">
+        <div class="bar-emojies" id="all">
+          <div id="bar">
+            <div id="likes" {{url1_performance_per_pos_count}}></div>
+            <div id="dislikes" {{url1_performance_per_neg_count}}></div>
+          </div>
+          
+            <div class="emojies">
+              <p class="emoji" id="like8"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                  width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                  data-target="#myModal2" />{{url1_performance_pos_count}}</p>
 
-      <p class="emoji" id="dislike3"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_battery_neg_count}}</p>
-    </div>
+              <p class="emoji" id="dislike8"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                  width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                  data-target="#myModal2" />{{url1_performance_neg_count}}</p>
+            </div>
+          </div>
 
+          <div class="bar-emojies" id="all1">
+            <div id="bar1">
+              <div id="likes1" {{url2_performance_per_pos_count}}></div>
+              <div id="dislikes1" {{url2_performance_per_neg_count}}></div>
+            </div>
+            <div class="emojies">
+              <p class="emoji" id="like9"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
+                  width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                  data-target="#myModal2" />{{url2_performance_pos_count}}</p>
 
-    <h1 class="aspect">DISPLAY</h1>
-    <div id="all">
-      <div id="bar">
-        <div id="likes" {{url1_display_per_pos_count}}></div>
-        <div id="dislikes" {{url1_display_per_neg_count}}></div>
+              <p class="emoji" id="dislike9"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
+                  width="23" height="30" style="vertical-align:middle" data-toggle="modal"
+                  data-target="#myModal2" />{{url2_performance_neg_count}}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <p class="emoji" id="like4"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_display_pos_count}}</p>
-
-      <p class="emoji" id="dislike4"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_display_neg_count}}</p>
     </div>
-    <div id="all1">
-      <div id="bar1">
-        <div id="likes1" {{url2_display_per_pos_count}}></div>
-        <div id="dislikes1" {{url2_display_per_neg_count}}></div>
-      </div>
-      <p class="emoji" id="like5"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_display_pos_count}}</p>
-
-      <p class="emoji" id="dislike5"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_display_neg_count}}</p>
-    </div>
-    <h1 class="aspect">VALUE FOR MONEY</h1>
-    <div id="all">
-      <div id="bar">
-        <div id="likes" {{url1_vfm_per_pos_count}}></div>
-        <div id="dislikes" {{url1_camera_per_neg_count}}></div>
-      </div>
-      <p class="emoji" id="like6"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal" data-target="#myModal2" />{{url1_vfm_pos_count}}
-      </p>
-
-      <p class="emoji" id="dislike6"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_vfm_neg_count}}</p>
-    </div>
-    <div id="all1">
-      <div id="bar1">
-        <div id="likes1" {{url2_vfm_per_pos_count}}></div>
-        <div id="dislikes1" {{url2_vfm_per_neg_count}}></div>
-      </div>
-      <p class="emoji" id="like7"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal" data-target="#myModal2" />{{url2_vfm_pos_count}}
-      </p>
-
-      <p class="emoji" id="dislike7"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_vfm_neg_count}}</p>
-    </div>
-    <h1 class="aspect">PERFORMANCE</h1>
-    <div id="all">
-      <div id="bar">
-        <div id="likes" {{url1_performance_per_pos_count}}></div>
-        <div id="dislikes" {{url1_performance_per_neg_count}}></div>
-      </div>
-      <p class="emoji" id="like8"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_performance_pos_count}}</p>
-
-      <p class="emoji" id="dislike8"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url1_performance_neg_count}}</p>
-    </div>
-    <div id="all1">
-      <div id="bar1">
-        <div id="likes1" {{url2_performance_per_pos_count}}></div>
-        <div id="dislikes1" {{url2_performance_per_neg_count}}></div>
-      </div>
-      <p class="emoji" id="like9"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico" width="23"
-          height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_performance_pos_count}}</p>
-
-      <p class="emoji" id="dislike9"> <input type="image" src="{% static 'img/negative.jpg' %}" alt="like-ico"
-          width="23" height="30" style="vertical-align:middle" data-toggle="modal"
-          data-target="#myModal2" />{{url2_performance_neg_count}}</p>
-    </div>
-
-
-
-
-
-
-
-
 
     <!-- Modal -->
     <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
       <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 100%;">
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -413,9 +357,9 @@
 
           </div>
 
-        </div><!-- modal-content -->
-      </div><!-- modal-dialog -->
-    </div><!-- modal -->
+        </div>
+      </div>
+    </div>
 
 
 
@@ -427,6 +371,7 @@
     <script src="{% static 'js/ajax.js' %}"></script>
     <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
+    <script src="{% static 'js/nav.js' %}"></script>
   </div>
 </body>
 

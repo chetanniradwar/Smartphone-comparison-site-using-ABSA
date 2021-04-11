@@ -46,3 +46,8 @@
     border-bottom-color: #EEEEEE;
     background-color: #FAFAFA;
 }
+@media(max-width:675px){
+    .modal.right .modal-dialog {
+        width:100%;
+    }
+}

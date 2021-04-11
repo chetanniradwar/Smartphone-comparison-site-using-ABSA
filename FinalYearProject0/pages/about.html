@@ -1,205 +1,155 @@
 <!DOCTYPE>
 <html lang="en">
-<!--<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <title> About </title>
-</head>
-<link rel="stylesheet" href="/static/css/about.css"> 
-<body>
-  <header class="text-gray-700 body-font">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-      <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-          stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
-          viewBox="0 0 24 24">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-        <span class="ml-3 text-xl">Aspect Based Sentiment Analysis</span>
-      </a>
-      <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-        <a href="http://127.0.0.1:8000/home.html" class="mr-5 hover:text-gray-900">HOME</a>
-        <a href="http://127.0.0.1:8000/compare.html" class="mr-5 hover:text-gray-900">COMPARE</a>
-        <a class="mr-5 hover:text-gray-900">SMARTPHONE DETAILS</a>
-        <a href="http://127.0.0.1:8000/about.html" class="mr-5 hover:text-gray-900">ABOUT</a>
 
-      </nav>
-    </div>
-  </header>
-</body>-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <title> About </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title> About </title>
 </head>
-<link rel="stylesheet" href="/static/css/about.css">
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
 
-<style>
-  <!--body {
-          margin: 0px;
-          font-family: Arial, Helvetica, sans-serif;
-          
-       }-->
-  .container {
-   overflow: hidden;
-   background-color: black;
-   padding:15px;
-  }
-
-  /* Style the topnav links hii */
-  .container a {
-   float: left;
-   display: block;
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
-  }
-
-  /* Change color on hover */
-  .link a:hover {
-   background-color: #ddd;
-   color: black;
-  }
-  .ml-3{
-   padding-right:300px;
-   padding-left:50px;
-  }
-  .footer {
-   display:inline-block;
-   left: 0;
-   padding-top:97px;
-   top: 400%;
-   width: 100%;
-   background: url('/static/img/red.jpg');
-   background-repeat: no-repeat;
-   background-size: 1520px 300px;
-   opacity:0.88;
-   color: white;
-   text-align: center;
-  }
-
-</style>
 
 <body>
   <header class="Header">
-    <div class="container">
-      <a class="flex">
-          <span class="ml-3">Aspect Based Sentiment Analysis</span>
-      </a>
-      <nav class="link">
-        <a href="http://127.0.0.1:8000/home.html" class="Button">HOME</a>
-        <a href="http://127.0.0.1:8000/compare.html" class="Button">COMPARE</a>
-        <a class="Button">SMARTPHONE DETAILS</a>
-        <a href="http://127.0.0.1:8000/about.html" class="Button">ABOUT</a>
-      </nav>
-    </div>
+
+    <nav class="nav-container">
+      <div class="res-block">
+        <div class="heading">
+          Aspect Based Sentiment Analysis
+
+        </div>
+        <div class="burger">
+          <div class="topnav-icon"></div>
+          <div class="topnav-icon"></div>
+          <div class="topnav-icon"></div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <ul>
+          <li> <a href="{%url 'home'%}"class="Button">HOME</a></li>
+          <li> <a href="{%url 'compare'%}" class="Button">COMPARE</a></li>
+          <li> <a href="#" class="Button">SMARTPHONE DETAILS</a></li>
+          <li> <a href="{%url 'about'%}" class="Button">ABOUT</a></li>
+        </ul>
+
+      </div>
+    </nav>
+
   </header>
 
   <section id="services-container">
-        
     <div id="services">
-            <div class="box">
-                <img src="/static/img/image1.jpg" alt="">
-                <h2 class="middle"> About Website </h2>
-                <p class="center"> 
-                    <br>There are many mobile comparison site out to compare smartphone.But this site goes one 
-                    step ahead and gives the details of Smart phones by comparing the features based on the reviews 
-                    of the Smart phones itself.So that user can take right decision in less time and get satisfied 
-                    by the purchase</p>
-            </div>
+      <div class="about-website-adv">
+      <div class="box" id="box1">
+        <img src="/static/img/image1.jpg" alt="">
+        <div class="about-text">
+        <h2 class="text-heading"> About Website </h2>
+        <p class="text-content">
+          There are many mobile comparison site out to compare smartphone.But this site goes one
+          step ahead and gives the details of Smart phones by comparing the features based on the reviews
+          of the Smart phones itself.So that user can take right decision in less time and get satisfied
+          by the purchase</p>
+          </div>
+      </div>
 
-            <div class="box1">
-                <img src="/static/img/advantage.jpg" alt="">
-                <h2 class="middle1">Advantages</h2>
-                <p class="center1">This app can be useful for customers in solving their confusion between two
-                 similar smartphone models.A smartphone company can compare its smartphone with other similar 
-                 smartphone of another competitive company. Based on the mass reviews from the online shopping site,
-                 the company can get the overall idea about where they are lacking, 
-                 where is the chance of improvement of their smartphone.</p>
-            </div>
+      <div class="box" id="box2">
+        <img src="{% static 'img/advantage.jpg'%}" alt="">
+        <div class="about-text">
+        <h2 class="text-heading">Advantages</h2>
+        <p class="text-content">This app can be useful for customers in solving their confusion between two
+          similar smartphone models.A smartphone company can compare its smartphone with other similar
+          smartphone of another competitive company. Based on the mass reviews from the online shopping site,
+          the company can get the overall idea about where they are lacking,
+          where is the chance of improvement of their smartphone.</p>
+          </div>
+      </div>
+    </div>
+   <div class="team-member-info">
+      <div class="section-header">
+        <h2>Team Members</h2>
+      </div>
 
-              <div class="section-header">
-               <h2>-:Team Members:-</h2>
-              </div>
+      <div class="team-member"> 
+        <div class="e">
+          <img class="d" src="{% static 'img/chetan_linkdin.jpg'%}">
+          <h3>Chetan Niradwar</h3>
+          <p>Education : EnTC,DYPCOE,Akurdi
+            <br>&nbsp Email-chetanniradwar@gmail.com &nbsp <br>
+            <a href="https://www.facebook.com"><img class="logo" src="{% static 'img/fb.jpg' %}"></a>
+            <a href="https://www.twitter.com"><img class="logo" src="{% static 'img/tweeter.jpg' %}"></a>
+            <a href="https://www.linkedin.com"><img class="logo" src="{% static 'img/linkedin.png' %}"></a>
+          </p>
+       
+        </div>
 
-              <div class="team-member"> Fina
-                <div class="e">
-                  <img class="d" src="/static/img/chetan_linkdin.jpg">
-                  <h3>Chetan Niradwar</h3>
-                  <p>Education : EnTC,DYPCOE,Akurdi
-                   <br>&nbsp Email-chetanniradwar@gmail.com &nbsp<br>
-                   <a href="https://www.facebook.com"><img class="logo" src="/static/img/fb.jpg"></a>
-                    <a href="https://www.twitter.com"><img class="logo" src="/static/img/tweeter.jpg"></a>
-                    <a href="https://www.linkedin.com"><img class="logo" src="/static/img/linkedin.png"></a>
-                  </p>
-                  
-                </div>
+        <div class="f">
+          <img class="d" src="{% static 'img/dipak.jpg' %}">
+          <h3>Dipak V. Ghodake</h3>
+          <p>Education : EnTC,DYPCOE,Akurdi
+            <br>&nbsp Email-dipakvghodake@gmail.com &nbsp<br>
+            <a href="https://www.facebook.com"><img class="logo" src="{% static 'img/fb.jpg' %}"></a>
+            <a href="https://www.twitter.com"><img class="logo" src="{% static 'img/tweeter.jpg' %}"></a>
+            <a href="https://www.linkedin.com"><img class="logo" src="{% static 'img/linkedin.png' %}"></a>
+          </p>
 
-                <div class="f">
-                  <img class="d" src="/static/img/dipak.jpg">
-                  <h3>Dipak V. Ghodake</h3>
-                  <p>Education : EnTC,DYPCOE,Akurdi
-                   <br>&nbsp Email-dipakvghodake@gmail.com &nbsp<br>
-                   <a href="https://www.facebook.com"><img class="logo" src="/static/img/fb.jpg"></a>
-                    <a href="https://www.twitter.com"><img class="logo" src="/static/img/tweeter.jpg"></a>
-                    <a href="https://www.linkedin.com"><img class="logo" src="/static/img/linkedin.png"></a>
-                  </p>
-                  
-                </div>
+        </div>
 
-                <div class="g"> 
-                  <img class="d" src="/static/img/yogesh.jpg">
-                  <h3>Yogesh V. Deshmukh</h3>
-                  <p>Education : EnTC,DYPCOE,Akurdi
-                   <br>&nbsp Email-princeyvd3286@gmail.com &nbsp<br><br>
-                    <a href="https://www.facebook.com"><img class="logo" src="/static/img/fb.jpg"></a>
-                    <a href="https://www.twitter.com"><img class="logo" src="/static/img/tweeter.jpg"></a>
-                    <a href="https://www.linkedin.com"><img class="logo" src="/static/img/linkedin.png"></a>
-                  </p>
-                </div>
-              </div>
-              
-              <div class="title">
-                <h2>Special Thanks To Our Project Guide</h2>
-              </div>
+        <div class="g">
+          <img class="d" src="{% static 'img/yogesh.jpg' %}">
+          <h3>Yogesh V. Deshmukh</h3>
+          <p>Education : EnTC,DYPCOE,Akurdi
+            <br>&nbsp Email-princeyvd3286@gmail.com &nbsp<br>
+            <a href="https://www.facebook.com"><img class="logo" src="{% static 'img/fb.jpg' %}"></a>
+            <a href="https://www.twitter.com"><img class="logo" src="{% static 'img/tweeter.jpg' %}"></a>
+            <a href="https://www.linkedin.com"><img class="logo" src="{% static 'img/linkedin.png' %}"></a>
+          </p>
+        </div>
+      </div>
+    </div>
 
-              <div class="member">
-                <div class="guide">
-                  <img class="d" src="/static/img/manish_sharma_photo.jpg">
-                  <h3>Dr.Manish Sharma</h3>
-                  <p>Post : Assistant Professor
-                   <br>&nbsp Email-xxxxxxxxxxxxxxx@gmail.com &nbsp<br>
-                    <a href="https://www.facebook.com"><img class="logo" src="/static/img/fb.jpg"></a>
-                    <a href="https://www.twitter.com"><img class="logo" src="/static/img/tweeter.jpg"></a>
-                    <a href="https://www.linkedin.com/in/dr-manish-sharma-2bb7404a/"><img class="logo" src="/static/img/linkedin.png"></a>
-                  </p>
-                  
-                </div>
-              </div>
+      <div class="title">
+        <h2>Special Thanks To Our Project Guide</h2>
+      </div>
 
-      
+      <div class="member">
+        <div class="guide">
+          <img class="d" src="{% static 'img/manish_sharma_photo.jpg' %}">
+          <h3>Dr.Manish Sharma</h3>
+          <p>Post : Assistant Professor
+            <br>&nbsp Email-xxxxxxxxxxxxxxx@gmail.com &nbsp<br>
+            <a href="https://www.facebook.com"><img class="logo" src="{% static 'img/fb.jpg'%}"></a>
+            <a href="https://www.twitter.com"><img class="logo" src="{% static 'img/tweeter.jpg'%}"></a>
+            <a href="https://www.linkedin.com/in/dr-manish-sharma-2bb7404a/"><img class="logo" src="{% static 'img/linkedin.png' %}"></a>
+          </p>
+
+        </div>
+      </div>
+
+
+    </div>
     </div>
   </section>
-  
+
   <footer class="footer">
-     <h3>Aspect Based Sentiment Analysis</h3>
-       <p>"Aims to extract and classify user’s positive or negative orientation towards each aspect!"</p>
-       <p><a href="https://www.facebook.com"><img class="logo" src="/static/img/fb.jpg"></a>
-          <a href="https://www.twitter.com"><img class="logo" src="/static/img/tweeter.jpg"></a>
-          <a href="https://www.linkedin.com"><img class="logo" src="/static/img/linkedin.png"></a>
-          <a href="https://www.youtube.com"><img class="logo" src="/static/img/youtube.png"></a>
-       </p>
-       <p>
-          <a href="http://127.0.0.1:8000/home.html" class="click">HOME &nbsp </a>
-          <a href="http://127.0.0.1:8000/compare.html" class="click">COMPARE &nbsp </a>
-          <a class="click">SMARTPHONE DETAILS &nbsp </a>
-          <a href="http://127.0.0.1:8000/about.html" class="click">ABOUT</a>
-       </p>
+    <h3>Aspect Based Sentiment Analysis</h3>
+    <p>"Aims to extract and classify user’s positive or negative orientation towards each aspect!"</p>
+    <p><a href="https://www.facebook.com"><img class="logo" src="{% static 'img/fb.jpg'%}"></a>
+      <a href="https://www.twitter.com"><img class="logo" src="{% static 'img/tweeter.jpg'%}"></a>
+      <a href="https://www.linkedin.com"><img class="logo" src="{% static 'img/linkedin.png'%}"></a>
+      <a href="https://www.youtube.com"><img class="logo" src="{% static 'img/youtube.png' %}"></a>
+    </p>
+    <p>
+      <a class="footer-nav" href="http://127.0.0.1:8000/home.html" >HOME &nbsp </a>
+      <a class="footer-nav" href="http://127.0.0.1:8000/compare.html" >COMPARE &nbsp </a>
+      <a class="footer-nav" href="#">SMARTPHONE DETAILS &nbsp </a>
+      <a  class="footer-nav"href="http://127.0.0.1:8000/about.html" >ABOUT</a>
+    </p>
 
-  </footer>       
-
+  </footer>
+  <script src="{% static 'js/nav.js' %}"></script>
 </body>
