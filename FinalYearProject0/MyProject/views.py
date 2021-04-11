@@ -85,8 +85,8 @@ def sortreviews(request) :
             reviewlist=modal_list[19]
     except IndexError:
         reviewlist.append('-1')
-    reviewlist.append(idname)
-    reviewlist.append("ChetamNiradwar")
+    # reviewlist.append(idname)
+    # reviewlist.append("ChetanNiradwar")
     return JsonResponse(reviewlist,safe=False)
 
 def scrapping(url1,url2,nlp) :
@@ -350,7 +350,7 @@ def scrapping(url1,url2,nlp) :
             k=k.replace(" ","")
             k=k+"1"
             key_spects1.append(k)
-        #print(key_spects1)
+        #print(key_spects1)s
         
         #image scrapping
         src=imgscrp1.find('div',{'class':'_1BweB8'})
@@ -536,6 +536,7 @@ def scrapping(url1,url2,nlp) :
     modal_list.append(url2_vfm_list[0])
     modal_list.append(url2_vfm_list[1])
     modal_list.append(url2_performance_list[0])
+    modal_list.append(url2_performance_list[1])
     url2_dict={"url2_camera_per_pos_count":url2_camera_list[2],
     "url2_camera_per_neg_count":url2_camera_list[3],
     "url2_camera_pos_count":url2_camera_list[4],
@@ -607,7 +608,7 @@ def flipkart_scapper(apsect_link,driver):
     review_list=[]
     l_url=('https://www.flipkart.com'+str(apsect_link))
     i=1
-    while i<=1:
+    while i<=15:
         ss=driver.get(str(l_url)+'&page='+str(i))
         qq=driver.current_url
         r2=rq.get(qq)

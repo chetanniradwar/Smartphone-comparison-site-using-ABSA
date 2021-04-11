@@ -6,9 +6,11 @@ Primary style
 *, *::after, *::before {
   box-sizing: border-box;
 }
+html{
+  font-size: 1em !important; 
 
 
-
+}
 body {
   /* font-size: 1.0rem; */
   font-family: "Source Sans Pro", sans-serif;

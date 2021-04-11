@@ -95,7 +95,7 @@
       </div>
     </form>
     <section class="cd-intro">
-      <h1>Products Comparison Table</h1>
+      <h1>Specifications Comparison Table</h1>
     </section> <!-- .cd-intro -->
     {%block content%}
 
@@ -273,7 +273,7 @@
         <div class="bar-emojies" id="all">
           <div id="bar">
             <div id="likes" {{url1_vfm_per_pos_count}}></div>
-            <div id="dislikes" {{url1_camera_per_neg_count}}></div>
+            <div id="dislikes" {{url1_vfm_per_neg_count}}></div>
           </div>
           <div class="emojies">
             <p class="emoji" id="like6"><input type="image" src="{% static 'img/positive.jpg' %}" alt="like-ico"
@@ -367,7 +367,7 @@
     {%endautoescape%}
 
     {%endblock%}
-    <script src="{% static 'js/compare_bar.js' %}"></script>
+   
     <script src="{% static 'js/ajax.js' %}"></script>
     <script src="{% static 'js/jquery-2.1.4.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
