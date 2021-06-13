@@ -261,7 +261,7 @@ def scrapping(url1,url2,nlp) :
         f_url=link.pop()
         l_url=('https://www.amazon.in'+str(f_url))
         i=1
-        while i<=4:
+        while i<=2:
             ss=driver.get(str(l_url)+'&pageNumber='+str(i))
             qq=driver.current_url
             r2=rq.get(qq)
@@ -269,35 +269,58 @@ def scrapping(url1,url2,nlp) :
             for co in soup.find_all('span',{'class':'a-size-base review-text review-text-content'}) :
                 cc=co.get_text()
                 comment.append(cc)
-        i=i+1
+            i=i+1
         amz_all_reviews=comment
+        # print(amz_all_reviews)
         cam=['camera','image','picture','photo','video','photography']
         bat=['battery','backup','drain','charging','mah']
         disp=['display','screen','density','resolution','ips','amoled']
         value_for_money =['value','price','money','cost','expensive']
         perfor=['processor','performance','game','graphic','COD']
+        url1_camera_reviews=[]
+        url1_battery_reviews=[]
+        url1_display_reviews=[]
+        url1_vfm_reviews=[]
+        url1_performance_reviews=[]
+        short_amz_reviews=[]
         
         for text in amz_all_reviews:
             text=text.lower()
-            if any(word in text for word in cam):
-                url1_camera_reviews=text
-            if any(word in text for word in bat):
-                url1_display_reviews=text
-            if any(word in text for word in disp):
-                url1_battery_reviews=text
-            if any(word in text for word in value_for_money):
-                url1_vfm_reviews=text
-            if any(word in text for word in perfor):
-                url1_performance_reviews=text   
+            text=text.replace('\n', '')
+            if(len(text)>1500):
+                res_first, res_second = text[:len(text)//2], text[len(text)//2:]
+                short_amz_reviews.append(res_first)
+                short_amz_reviews.append(res_second)
+            else:
+                short_amz_reviews.append(text)
+
+        print(short_amz_reviews)
+
+        for short_text in short_amz_reviews:
+            if any(word in short_text for word in cam):
+                url1_camera_reviews.append(short_text)
+            if any(word in short_text for word in bat):
+                url1_display_reviews.append(short_text)
+            if any(word in short_text for word in disp):
+                url1_battery_reviews.append(short_text)
+            if any(word in short_text for word in value_for_money):
+                url1_vfm_reviews.append(short_text)
+            if any(word in short_text for word in perfor):
+                url1_performance_reviews.append(short_text)
     # df=pd.DataFrame([comment]).transpose()
     # df.to_excel(r'C:\Users\Chetan Niradwar\ChetanProject\Documents\\reviews_url1.xlsx')
-   
+    print(url1_camera_reviews)
     # sentiment Classification
-    url1_camera_list=sentiment_classify(url1_camera_reviews,'Camera',nlp)
-    url1_battery_list=sentiment_classify(url1_battery_reviews,'Battery',nlp)
-    url1_display_list=sentiment_classify(url1_display_reviews,'Display',nlp)
-    url1_vfm_list=sentiment_classify(url1_vfm_reviews,'Money',nlp)
-    url1_performance_list=sentiment_classify(url1_performance_reviews,'Performance',nlp)
+    if(len(url1_camera_reviews)):
+        url1_camera_list=sentiment_classify(url1_camera_reviews,'Camera',nlp)
+    if(len(url1_battery_reviews)):
+        url1_battery_list=sentiment_classify(url1_battery_reviews,'Battery',nlp)
+    if(len(url1_display_reviews)):
+        url1_display_list=sentiment_classify(url1_display_reviews,'Display',nlp)
+    if(len(url1_vfm_reviews)):
+        url1_vfm_list=sentiment_classify(url1_vfm_reviews,'Money',nlp)
+    if(len(url1_performance_reviews)):
+        url1_performance_list=sentiment_classify(url1_performance_reviews,'Performance',nlp)
     modal_list.append(url1_camera_list[0])
     modal_list.append(url1_camera_list[1])
     modal_list.append(url1_battery_list[0])
@@ -438,7 +461,7 @@ def scrapping(url1,url2,nlp) :
         spects1=[]
         for ele1 in RAM1:
                     ram1=ele1.get_text()
-                    newram=ram1.replace("\n","")
+                    newram=ram1.replace("\n"," ")
                     newram=newram+"1"
                     spects1.append(newram)
         spects_set1 = [] 
@@ -459,7 +482,7 @@ def scrapping(url1,url2,nlp) :
         RAM2= soup1.find_all('td',{'class':'base-item-column'})
         for ele1 in RAM2:
                     ram1=ele1.get_text()
-                    newram=ram1.replace("\n","")
+                    newram=ram1.replace("\n"," ")
                     key_spects1.append(newram)
         
 
@@ -478,7 +501,7 @@ def scrapping(url1,url2,nlp) :
         #print(src)
         srcV1=src.find('img',{'class':'a-lazy-loaded'})
         srcV2=srcV1.get('data-src')
-        spects_set1.append('url1_image')
+        spects_set1.append('url2_image')
         key_spects_set1.append(srcV2)
         
 
@@ -494,7 +517,7 @@ def scrapping(url1,url2,nlp) :
         f_url=link1.pop()
         l_url=('https://www.amazon.in'+str(f_url))  #chetan
         i=1
-        while i<=4:
+        while i<=3:
             ss=driver.get(str(l_url)+'&pageNumber='+str(i))
             qq=driver.current_url
             r2=rq.get(qq)
@@ -509,24 +532,44 @@ def scrapping(url1,url2,nlp) :
         disp=['display','screen','density','resolution','ips','amoled']
         value_for_money =['value','price','money','cost','expensive']
         perfor=['processor','performance','game','graphic','COD']
+        url2_camera_reviews=[]
+        url2_battery_reviews=[]
+        url2_display_reviews=[]
+        url2_vfm_reviews=[]
+        url2_performance_reviews=[]
+        short_amz_reviews=[]
         
         for text in amz_all_reviews:
             text=text.lower()
-            if any(word in text for word in cam):
-                url2_camera_reviews=text
-            if any(word in text for word in bat):
-                url2_display_reviews=text
-            if any(word in text for word in disp):
-                url2_battery_reviews=text
-            if any(word in text for word in value_for_money):
-                url2_vfm_reviews=text
-            if any(word in text for word in perfor):
-                url2_performance_reviews=text
-    url2_camera_list=sentiment_classify(url2_camera_reviews,'Camera',nlp)
-    url2_battery_list=sentiment_classify(url2_battery_reviews,'Battery',nlp)
-    url2_display_list=sentiment_classify(url2_display_reviews,'Display',nlp)
-    url2_vfm_list=sentiment_classify(url2_vfm_reviews,'Money',nlp)
-    url2_performance_list=sentiment_classify(url2_performance_reviews,'Performance',nlp)
+            text=text.replace('\n', '')
+            if(len(text)>1500):
+                res_first, res_second = text[:len(text)//2], text[len(text)//2:]
+                short_amz_reviews.append(res_first)
+                short_amz_reviews.append(res_second)
+            else:
+                short_amz_reviews.append(text)
+        for short_text in short_amz_reviews:
+            if any(word in short_text for word in cam):
+                url2_camera_reviews.append(short_text)
+            if any(word in short_text for word in bat):
+                url2_display_reviews.append(short_text)
+            if any(word in short_text for word in disp):
+                url2_battery_reviews.append(short_text)
+            if any(word in short_text for word in value_for_money):
+                url2_vfm_reviews.append(short_text)
+            if any(word in short_text for word in perfor):
+                url2_performance_reviews.append(short_text)
+   
+    if(len(url2_camera_reviews)):
+        url2_camera_list=sentiment_classify(url2_camera_reviews,'Camera',nlp)
+    if(len(url2_battery_reviews)):
+        url2_battery_list=sentiment_classify(url2_battery_reviews,'Battery',nlp)
+    if(len(url2_display_reviews)):
+        url2_display_list=sentiment_classify(url2_display_reviews,'Display',nlp)
+    if(len(url2_vfm_reviews)):
+        url2_vfm_list=sentiment_classify(url2_vfm_reviews,'Money',nlp)
+    if(len(url2_performance_reviews)):
+        url2_performance_list=sentiment_classify(url2_performance_reviews,'Performance',nlp)
     modal_list.append(url2_camera_list[0])
     modal_list.append(url2_camera_list[1])
     modal_list.append(url2_battery_list[0])
@@ -608,7 +651,7 @@ def flipkart_scapper(apsect_link,driver):
     review_list=[]
     l_url=('https://www.flipkart.com'+str(apsect_link))
     i=1
-    while i<=15:
+    while i<=3:
         ss=driver.get(str(l_url)+'&page='+str(i))
         qq=driver.current_url
         r2=rq.get(qq)
